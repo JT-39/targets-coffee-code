@@ -1,0 +1,17 @@
+/*-- scss:defaults --*/
+
+// https://quarto.org/docs/presentations/revealjs/themes.html#sass-variables
+
+$headingFont: "Monaco", monospace;
+$mainFont: "Monaco", monospace;
+$codeFont: "Monaco", monospace;
+
+/*-- scss:rules --*/
+.smaller-left {
+    font-size: 0.8em; /* Adjust this value to make the text smaller or larger */
+    text-align: left;
+  }
+  
+.center {
+    text-align: center;
+  }

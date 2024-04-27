@@ -1,0 +1,13 @@
+---
+title: "{targets}"
+subtitle: "An introduction to the package targets"
+execute: 
+  eval: true
+format: 
+  revealjs:
+    center: true
+    hash-type: number
+    highlight-style: a11y
+    code-line-numbers: false
+---
+

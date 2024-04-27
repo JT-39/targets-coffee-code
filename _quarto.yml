@@ -1,0 +1,25 @@
+project:
+  title: intro-targets
+  output-dir: _outputs
+  render: 
+    - intro-targets.qmd
+author: "Jake Tufts"
+format:
+  revealjs:
+    theme:
+      - default
+      - www/quarto-presentation.scss
+    logo: _images/regions_group_logo.png
+    code-link: true
+    css: www/custom-styles.css
+    self-contained: true
+    preview-links: true
+execute: 
+  echo: false
+  eval: false
+  freeze: auto
+embed-resources: true
+title-slide-attributes: 
+  data-background-color: "#43464B"
+
+
