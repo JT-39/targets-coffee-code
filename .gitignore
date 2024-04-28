@@ -2,9 +2,10 @@
 .Rhistory
 .RData
 .Ruserdata
-_misc/
+/_misc/
 *.html
 /.quarto/
 renv/
 .RData
 /outputs/
+/sheff-targets-demo/
