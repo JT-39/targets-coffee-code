@@ -1,6 +1,10 @@
 ---
 title: "{targets}"
-subtitle: "An introduction to the package targets"
+title-slide-attributes: 
+  data-background-image: _images/targets_hex.png
+  data-background-size: 200px
+  data-background-position: center 85%
+subtitle: "An introduction to the package `{targets}`"
 execute: 
   eval: true
 format: 
@@ -11,257 +15,273 @@ format:
     code-line-numbers: false
 ---
 
----
+------------------------------------------------------------------------
 
-## {targets} is a pipeline tool
+## `{targets}` is a pipeline tool
 
 <br>
 
 Use it to coordinate your data analysis projects.
 
----
-
+------------------------------------------------------------------------
 
 ## Data analysis can be slow and repetitive {autoslide="1000"}
 
-::: {.r-stack}
-
-:::{.fragment width="450" height="350"}
+::: r-stack
+::: {.fragment width="450" height="300"}
 ```{dot}
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
     edge [color=transparent]
     {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" fontcolor=transparent]
+        A[label="Launch the code" color=black]
+        B[label="Wait while it runs" fontcolor=transparent]
         C[label="Discover an issue" fontcolor=transparent]
-        D[label="Wait while it runs" fontcolor=transparent]
+        D[label="Restart from scratch" fontcolor=transparent]
     }
     A -> B [color=transparent]
-    A -> C [dir=back color=transparent]
-    B -> D [color=transparent]
-    C -> D [dir=back color=transparent]
+    A -> D [dir=back color=transparent]
+    B -> C [color=transparent]
+    D -> C [dir=back color=transparent]
 }
 ```
 :::
 
-:::{.fragment width="450" height="300"}
+::: {.fragment width="450" height="300"}
 ```{dot}
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
     edge [color=transparent]
     {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" color=black]
+        A[label="Launch the code" color=black]
+        B[label="Wait while it runs" color=black]
         C[label="Discover an issue" fontcolor=transparent]
-        D[label="Wait while it runs" fontcolor=transparent]
+        D[label="Restart from scratch" fontcolor=transparent]
     }
     A -> B [color=black]
-    A -> C [dir=back color=transparent]
-    B -> D [color=transparent]
-    C -> D [dir=back color=transparent]
+    A -> D [dir=back color=transparent]
+    B -> C [color=transparent]
+    D -> C [dir=back color=transparent]
 }
 ```
 :::
 
-:::{.fragment width="450" height="300"}
+::: {.fragment width="450" height="300"}
 ```{dot}
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
     edge [color=transparent]
     {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" color=black]
-        C[label="Discover an issue" fontcolor=transparent]
-        D[label="Wait while it runs" color=black]
-    }
-    A -> B [color=black]
-    A -> C [dir=back color=transparent]
-    B -> D [color=black]
-    C -> D [dir=back color=transparent]
-}
-```
-:::
-
-:::{.fragment width="450" height="300"}
-```{dot}
-digraph G {
-    rankdir=LR;
-    node [shape = box style=rounded color=transparent]
-    edge [color=transparent]
-    {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" color=black]
+        A[label="Launch the code" color=black]
+        B[label="Wait while it runs" color=black]
         C[label="Discover an issue" color=black]
-        D[label="Wait while it runs" color=black]
+        D[label="Restart from scratch" fontcolor=transparent]
     }
     A -> B [color=black]
-    A -> C [dir=back color=transparent]
-    B -> D [color=black]
-    C -> D [dir=back color=black]
+    A -> D [dir=back color=transparent]
+    B -> C [color=black]
+    D -> C [dir=back color=transparent]
 }
 ```
 :::
 
-:::{.fragment width="450" height="300"}
+::: {.fragment width="450" height="300"}
+```{dot}
+digraph G {
+    rankdir=LR;
+    node [shape = box style=rounded color=transparent]
+    edge [color=transparent]
+    {
+        A[label="Launch the code" color=black]
+        B[label="Wait while it runs" color=black]
+        C[label="Discover an issue" color=black]
+        D[label="Restart from scratch" color=black]
+    }
+    A -> B [color=black]
+    A -> D [dir=back color=transparent]
+    B -> C [color=black]
+    D -> C [dir=back color=black]
+}
+```
+:::
+
+::: {.fragment width="450" height="300"}
 ```{dot}
 digraph G {
     rankdir=LR;
     {
     node [shape = box style=rounded]
-        A[label="Restart from scratch" ]
-        B[label="Launch the code"]
+        A[label="Launch the code"]
+        B[label="Wait while it runs"]
         C[label="Discover an issue"]
-        D[label="Wait while it runs"]
+        D[label="Restart from scratch"]
     }
     A -> B
-    A -> C [dir=back]
-    B -> D
-    C -> D [dir=back]
+    A -> D [dir=back]
+    B -> C
+    D -> C [dir=back]
 }
 ```
 :::
 
-:::{.fragment width="450" height="300"}
+::: {.fragment width="450" height="300"}
 ```{dot}
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
     edge [color=transparent]
     {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" fontcolor=transparent]
+        A[label="Launch the code" color=black]
+        B[label="Wait while it runs" fontcolor=transparent]
         C[label="Discover an issue" fontcolor=transparent]
-        D[label="Wait while it runs" fontcolor=transparent]
+        D[label="Restart from scratch" fontcolor=transparent]
     }
     A -> B [color=transparent]
-    A -> C [dir=back color=transparent]
-    B -> D [color=transparent]
-    C -> D [dir=back color=transparent]
+    A -> D [dir=back color=transparent]
+    B -> C [color=transparent]
+    D -> C [dir=back color=transparent]
 }
 ```
 :::
 
-:::{.fragment width="450" height="350"}
+::: {.fragment width="450" height="300"}
 ```{dot}
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
     edge [color=transparent]
     {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" fontcolor=transparent]
+        A[label="Launch the code" color=black]
+        B[label="Wait while it runs" color=black]
         C[label="Discover an issue" fontcolor=transparent]
-        D[label="Wait while it runs" fontcolor=transparent]
-    }
-    A -> B [color=transparent]
-    A -> C [dir=back color=transparent]
-    B -> D [color=transparent]
-    C -> D [dir=back color=transparent]
-}
-```
-:::
-
-:::{.fragment width="450" height="300"}
-```{dot}
-digraph G {
-    rankdir=LR;
-    node [shape = box style=rounded color=transparent]
-    edge [color=transparent]
-    {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" color=black]
-        C[label="Discover an issue" fontcolor=transparent]
-        D[label="Wait while it runs" fontcolor=transparent]
+        D[label="Restart from scratch" fontcolor=transparent]
     }
     A -> B [color=black]
-    A -> C [dir=back color=transparent]
-    B -> D [color=transparent]
-    C -> D [dir=back color=transparent]
+    A -> D [dir=back color=transparent]
+    B -> C [color=transparent]
+    D -> C [dir=back color=transparent]
 }
 ```
 :::
 
-:::{.fragment width="450" height="300"}
+::: {.fragment width="450" height="300"}
 ```{dot}
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
     edge [color=transparent]
     {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" color=black]
-        C[label="Discover an issue" fontcolor=transparent]
-        D[label="Wait while it runs" color=black]
-    }
-    A -> B [color=black]
-    A -> C [dir=back color=transparent]
-    B -> D [color=black]
-    C -> D [dir=back color=transparent]
-}
-```
-:::
-
-:::{.fragment width="450" height="300"}
-```{dot}
-digraph G {
-    rankdir=LR;
-    node [shape = box style=rounded color=transparent]
-    edge [color=transparent]
-    {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" color=black]
+        A[label="Launch the code" color=black]
+        B[label="Wait while it runs" color=black]
         C[label="Discover an issue" color=black]
-        D[label="Wait while it runs" color=black]
+        D[label="Restart from scratch" fontcolor=transparent]
     }
     A -> B [color=black]
-    A -> C [dir=back color=transparent]
-    B -> D [color=black]
-    C -> D [dir=back color=black]
+    A -> D [dir=back color=transparent]
+    B -> C [color=black]
+    D -> C [dir=back color=transparent]
 }
 ```
 :::
 
-:::{.fragment width="450" height="300"}
+::: {.fragment width="450" height="300"}
+```{dot}
+digraph G {
+    rankdir=LR;
+    node [shape = box style=rounded color=transparent]
+    edge [color=transparent]
+    {
+        A[label="Launch the code" color=black]
+        B[label="Wait while it runs" color=black]
+        C[label="Discover an issue" color=black]
+        D[label="Restart from scratch" color=black]
+    }
+    A -> B [color=black]
+    A -> D [dir=back color=transparent]
+    B -> C [color=black]
+    D -> C [dir=back color=black]
+}
+```
+:::
+
+::: {.fragment width="450" height="300"}
 ```{dot}
 digraph G {
     rankdir=LR;
     {
     node [shape = box style=rounded]
-        A[label="Restart from scratch" ]
-        B[label="Launch the code"]
+        A[label="Launch the code"]
+        B[label="Wait while it runs"]
         C[label="Discover an issue"]
-        D[label="Wait while it runs"]
+        D[label="Restart from scratch"]
     }
     A -> B
-    A -> C [dir=back]
-    B -> D
-    C -> D [dir=back]
+    A -> D [dir=back]
+    B -> C
+    D -> C [dir=back]
 }
 ```
 :::
 
-:::{.fragment width="450" height="300"}
+::: {.fragment width="450" height="300"}
 ```{dot}
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
     edge [color=transparent]
     {
-        A[label="Restart from scratch" color=black]
-        B[label="Launch the code" fontcolor=transparent]
+        A[label="Launch the code" color=black]
+        B[label="Wait while it runs" fontcolor=transparent]
         C[label="Discover an issue" fontcolor=transparent]
-        D[label="Wait while it runs" fontcolor=transparent]
+        D[label="Restart from scratch" fontcolor=transparent]
     }
     A -> B [color=transparent]
-    A -> C [dir=back color=transparent]
-    B -> D [color=transparent]
-    C -> D [dir=back color=transparent]
+    A -> D [dir=back color=transparent]
+    B -> C [color=transparent]
+    D -> C [dir=back color=transparent]
 }
 ```
 :::
 
 :::
+------------------------------------------------------------------------
+
+## How does `{targets}` combat this?
+
+<section style="text-align: left;">
+
+<br> <br>
+
+::: left
+::: fragment
+1.  Skips unchanged code/ steps      🏃
+:::
+
+::: fragment
+2.  Evidence that `code = results`   🔬
+:::
+
+::: fragment
+3.  Produces code dependency graphs  🦾
+:::
+
+::: fragment
+4.  Makes parallel computing easy    🔀
+:::
+:::
+
+</section>
+
+::: notes
+-   Watches the workflow and skips steps (targets) whose code, data & upstream dependencies have not changed.
+-   When all targets are up to date - evidence that results match the code.
+    -   Trust results.
+    -   Confirm computation is reproducible
+:::
+
+------------------------------------------------------------------------
+
+"`{targets}` implicitly nudges users toward a clean, function-oriented programming style that fits the intent of the R language"
