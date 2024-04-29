@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "targets_coffee_code"
+version = "0.1.0"
+description = ""
+authors = ["Jake Tufts <jake.tufts@education.gov.uk>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+graphviz = "^0.20.3"
+jupyter = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

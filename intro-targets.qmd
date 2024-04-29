@@ -13,23 +13,18 @@ format:
 
 ---
 
-{targets} is pipeline tool.
+{targets} is a pipeline tool.
 
 This means it coordinates your data analysis projects.
 
 ---
 
 
-Data analysis can be slow and repetitive
-
-Launch the code.
-Wait while it runs.
-Discover an issue.
-Restart from scratch.
+## Data analysis can be slow and repetitive {autoslide="500"}
 
 ::: {.r-stack}
 
-:::{.fragment width="450" height="300"}
+:::{.fragment width="600" height="450"}
 ```{dot}
 digraph G {
     rankdir=LR;
@@ -149,16 +144,3 @@ digraph G {
 :::
 
 :::
-
-```{python}
-#| echo: fenced
-document.addEventListener('DOMContentLoaded', function() {
-  const fragments = document.querySelectorAll('.fragment');
-  let currentFragmentIndex = 0;
-  setInterval(() => {
-    fragments[currentFragmentIndex].style.display = 'none';
-    currentFragmentIndex = (currentFragmentIndex + 1) % fragments.length;
-    fragments[currentFragmentIndex].style.display = 'block';
-  }, 2000); // Adjust the interval (in milliseconds) for the animation speed
-});
-```

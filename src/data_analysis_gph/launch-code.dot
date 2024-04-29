@@ -1,0 +1,15 @@
+digraph G {
+    rankdir=LR;
+    node [shape = box style=rounded color=transparent]
+    edge [color=transparent]
+    {
+        A[label="Restart from scratch" color=black]
+        B[label="Launch the code" fontcolor=transparent]
+        C[label="Discover an issue" fontcolor=transparent]
+        D[label="Wait while it runs" fontcolor=transparent]
+    }
+    A -> B [color=transparent]
+    A -> C [dir=back color=transparent]
+    B -> D [color=transparent]
+    C -> D [dir=back color=transparent]
+}
