@@ -13,18 +13,139 @@ format:
 
 ---
 
-{targets} is a pipeline tool.
+## {targets} is a pipeline tool
 
-This means it coordinates your data analysis projects.
+<br>
+
+Use it to coordinate your data analysis projects.
 
 ---
 
 
-## Data analysis can be slow and repetitive {autoslide="500"}
+## Data analysis can be slow and repetitive {autoslide="1000"}
 
 ::: {.r-stack}
 
-:::{.fragment width="600" height="450"}
+:::{.fragment width="450" height="350"}
+```{dot}
+digraph G {
+    rankdir=LR;
+    node [shape = box style=rounded color=transparent]
+    edge [color=transparent]
+    {
+        A[label="Restart from scratch" color=black]
+        B[label="Launch the code" fontcolor=transparent]
+        C[label="Discover an issue" fontcolor=transparent]
+        D[label="Wait while it runs" fontcolor=transparent]
+    }
+    A -> B [color=transparent]
+    A -> C [dir=back color=transparent]
+    B -> D [color=transparent]
+    C -> D [dir=back color=transparent]
+}
+```
+:::
+
+:::{.fragment width="450" height="300"}
+```{dot}
+digraph G {
+    rankdir=LR;
+    node [shape = box style=rounded color=transparent]
+    edge [color=transparent]
+    {
+        A[label="Restart from scratch" color=black]
+        B[label="Launch the code" color=black]
+        C[label="Discover an issue" fontcolor=transparent]
+        D[label="Wait while it runs" fontcolor=transparent]
+    }
+    A -> B [color=black]
+    A -> C [dir=back color=transparent]
+    B -> D [color=transparent]
+    C -> D [dir=back color=transparent]
+}
+```
+:::
+
+:::{.fragment width="450" height="300"}
+```{dot}
+digraph G {
+    rankdir=LR;
+    node [shape = box style=rounded color=transparent]
+    edge [color=transparent]
+    {
+        A[label="Restart from scratch" color=black]
+        B[label="Launch the code" color=black]
+        C[label="Discover an issue" fontcolor=transparent]
+        D[label="Wait while it runs" color=black]
+    }
+    A -> B [color=black]
+    A -> C [dir=back color=transparent]
+    B -> D [color=black]
+    C -> D [dir=back color=transparent]
+}
+```
+:::
+
+:::{.fragment width="450" height="300"}
+```{dot}
+digraph G {
+    rankdir=LR;
+    node [shape = box style=rounded color=transparent]
+    edge [color=transparent]
+    {
+        A[label="Restart from scratch" color=black]
+        B[label="Launch the code" color=black]
+        C[label="Discover an issue" color=black]
+        D[label="Wait while it runs" color=black]
+    }
+    A -> B [color=black]
+    A -> C [dir=back color=transparent]
+    B -> D [color=black]
+    C -> D [dir=back color=black]
+}
+```
+:::
+
+:::{.fragment width="450" height="300"}
+```{dot}
+digraph G {
+    rankdir=LR;
+    {
+    node [shape = box style=rounded]
+        A[label="Restart from scratch" ]
+        B[label="Launch the code"]
+        C[label="Discover an issue"]
+        D[label="Wait while it runs"]
+    }
+    A -> B
+    A -> C [dir=back]
+    B -> D
+    C -> D [dir=back]
+}
+```
+:::
+
+:::{.fragment width="450" height="300"}
+```{dot}
+digraph G {
+    rankdir=LR;
+    node [shape = box style=rounded color=transparent]
+    edge [color=transparent]
+    {
+        A[label="Restart from scratch" color=black]
+        B[label="Launch the code" fontcolor=transparent]
+        C[label="Discover an issue" fontcolor=transparent]
+        D[label="Wait while it runs" fontcolor=transparent]
+    }
+    A -> B [color=transparent]
+    A -> C [dir=back color=transparent]
+    B -> D [color=transparent]
+    C -> D [dir=back color=transparent]
+}
+```
+:::
+
+:::{.fragment width="450" height="350"}
 ```{dot}
 digraph G {
     rankdir=LR;
