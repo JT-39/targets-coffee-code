@@ -1,5 +1,5 @@
 ---
-title: "{targets}"
+title: "{targets} 🎯"
 title-slide-attributes: 
   data-background-image: _images/targets_hex.png
   data-background-size: 200px
@@ -245,8 +245,8 @@ digraph G {
 }
 ```
 :::
-
 :::
+
 ------------------------------------------------------------------------
 
 ## How does `{targets}` combat this?
@@ -257,19 +257,19 @@ digraph G {
 
 ::: left
 ::: fragment
-1.  Skips unchanged code/ steps      🏃
+1.  Skips unchanged code/ steps 🏃
 :::
 
 ::: fragment
-2.  Evidence that `code = results`   🔬
+2.  Evidence that `code = results` 🔬
 :::
 
 ::: fragment
-3.  Produces code dependency graphs  🦾
+3.  Produces code dependency graphs 🦾
 :::
 
 ::: fragment
-4.  Makes parallel computing easy    🔀
+4.  Makes parallel computing easy 🔀
 :::
 :::
 
@@ -285,3 +285,22 @@ digraph G {
 ------------------------------------------------------------------------
 
 "`{targets}` implicitly nudges users toward a clean, function-oriented programming style that fits the intent of the R language"
+
+------------------------------------------------------------------------
+
+## Code walkthrough
+
+Source code is available at [https://github.com/JT-39/](https://github.com/JT-39/)
+
+------------------------------------------------------------------------
+
+## Scraping Ofsted data
+
+Data pipeline:
+
+- Scrape Ofsted data
+- Clean the data
+- Plot the data
+- Save plot as a png
+
+------------------------------------------------------------------------
