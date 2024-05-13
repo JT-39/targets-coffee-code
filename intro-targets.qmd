@@ -3,16 +3,17 @@ title: "{targets} 🎯"
 title-slide-attributes: 
   data-background-image: _images/targets_hex.png
   data-background-size: 200px
-  data-background-position: center 85%
+  data-background-position: center 90%
 subtitle: "An introduction to the package `{targets}`"
 execute: 
-  eval: true
+  echo: true
+  eval: false
 format: 
   revealjs:
     center: true
     hash-type: number
     highlight-style: a11y
-    code-line-numbers: false
+    code-line-numbers: true
 ---
 
 ------------------------------------------------------------------------
@@ -25,11 +26,19 @@ Use it to coordinate your data analysis projects.
 
 ------------------------------------------------------------------------
 
+## Why use `{targets}`?
+
+------------------------------------------------------------------------
+
 ## Data analysis can be slow and repetitive {autoslide="1000"}
 
 ::: r-stack
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: launch-1
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
@@ -50,6 +59,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: wait-1
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
@@ -70,6 +83,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: discover-1
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
@@ -90,6 +107,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: restart-1
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
@@ -110,6 +131,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: full-1
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     {
@@ -129,6 +154,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: launch-2
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
@@ -149,6 +178,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: wait-2
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
@@ -169,6 +202,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: discover-2
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
@@ -189,6 +226,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: restart-2
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
@@ -209,6 +250,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: full-2
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     {
@@ -228,6 +273,10 @@ digraph G {
 
 ::: {.fragment width="450" height="300"}
 ```{dot}
+//| label: launch-3
+//| eval: true
+//| echo: false
+
 digraph G {
     rankdir=LR;
     node [shape = box style=rounded color=transparent]
@@ -276,7 +325,8 @@ digraph G {
 </section>
 
 ::: notes
--   Watches the workflow and skips steps (targets) whose code, data & upstream dependencies have not changed.
+-   Watches the workflow and skips steps (targets) whose code,
+data & upstream dependencies have not changed.
 -   When all targets are up to date - evidence that results match the code.
     -   Trust results.
     -   Confirm computation is reproducible
@@ -284,23 +334,391 @@ digraph G {
 
 ------------------------------------------------------------------------
 
-"`{targets}` implicitly nudges users toward a clean, function-oriented programming style that fits the intent of the R language"
+"`{targets}` implicitly nudges users toward a clean,
+function-oriented programming style that fits the intent of the R language"
 
 ------------------------------------------------------------------------
 
-## Code walkthrough
+## Setup
 
-Source code is available at [https://github.com/JT-39/](https://github.com/JT-39/)
+<br>
+<br>
+
+```{r}
+install.packages("targets")
+```
+
+------------------------------------------------------------------------
+
+## Create an R project
+
+<br>
+<br>
+
+```{r}
+usethis::create_project(path = r"(C:\Users\jtufts\Documents\targets-demo)")
+```
+
+<br>
+
+::: {.callout-tip}
+<section style="text-align: left;">
+Quick plug that you can use my package to create a pre-populated R project directory!
+
+```{r}
+dauRtemplate::dau_proj_template(path = r"(C:\Users\jtufts\Documents\targets-demo)")
+```
+
+<br>
+
+More information here:
+[https://github.com/JT-39/dau-R-template-ext]({{< env url_dauR_template >}}){target="_blank"}
+</section>
+:::
 
 ------------------------------------------------------------------------
 
-## Scraping Ofsted data
+## Develop your data pipeline
 
-Data pipeline:
+<br>
 
-- Scrape Ofsted data
-- Clean the data
-- Plot the data
-- Save plot as a png
+The project directory could look something like...
+
+<br>
+
+```{.bash .code}
+├── analysis.R
+├── _data/
+│   ├── raw_data.csv
+├── R/
+│   ├── functions.R
+```
 
 ------------------------------------------------------------------------
+
+## Absence data
+
+<br>
+
+![](_images/absence_data.png)
+
+------------------------------------------------------------------------
+
+## analysis.R
+
+<br>
+
+```{r}
+#| label: analysis
+#| eval: false
+source(here::here("src/R/functions.R"))
+
+# Path to absence data
+absence_data_file_path <- here::here("_data/raw/1_absence_3term_nat_reg_la.csv")
+
+# Extract national absence and format date
+df_nat_absence <- get_nat_absence_data(absence_data_file_path) |>
+  format_time_period()
+
+# Fit a linear model
+model <- fit_model(df_nat_absence)
+
+# Plot the data and model
+plot_model(model, df_nat_absence)
+```
+
+------------------------------------------------------------------------
+
+## functions.R
+
+<br>
+
+```{r}
+#| label: functions
+#| eval: false
+
+# Pull national absence from file
+get_nat_absence_data <- function(file_path) {
+  read.csv(file = file_path) |>
+    dplyr::filter(geographic_level == "National")
+}
+
+# Extract the start year from academic year
+extract_year <- function(date) {
+  paste0(substr(date, 1, 4))
+}
+
+# Format the year as a date
+format_time_period <- function(data) {
+  data |>
+    dplyr::mutate(Date = lubridate::year(as.Date(extract_year(time_period),
+                                                 format = "%Y")),
+                  .after=time_period)
+}
+
+
+# Fit the model and pull coefficients
+fit_model <- function(data) {
+  lm(sess_overall_percent_pa_10_exact ~ Date, data) |>
+    coefficients()
+}
+
+# Round to the nearets multiple of five
+round_to_multiple_five <- function(x) {
+  ceiling((x + 1)/5)*5
+}
+
+# Plot the data and model
+plot_model <- function(model, data) {
+  ggplot2::ggplot(data) +
+    ggplot2::geom_point(ggplot2::aes(x = Date,
+                                     y = sess_overall_percent_pa_10_exact,
+                                     colour = school_type)) +
+    ggplot2::geom_line(ggplot2::aes(x = Date,
+                                     y = sess_overall_percent_pa_10_exact,
+                                     colour = school_type)) +
+    ggplot2::scale_colour_manual(values = kasstylesr::color_picker(4),
+                                 breaks = c("Total", "State-funded primary",
+                                            "State-funded secondary", "Special")) +
+    ggplot2::geom_abline(intercept = model[1],
+                         slope = model[2],
+                         show.legend = T,
+                         colour="red",
+                         linetype="dashed") +
+    ggplot2::annotate("text",
+                      x = max(data$Date),
+                      y = lm(sess_overall_percent_pa_10_exact ~ Date,
+                             df_nat_absence) |>
+                        fitted.values() |>
+                        max(),
+                      hjust = -0.45,
+                      label = "Line of best fit",
+                      colour = "red") +
+    ggplot2::scale_y_continuous(breaks = scales::pretty_breaks(),
+                                limits = function(x) {
+                                  c(0, round_to_multiple_five(max(x)))
+                                }) +
+    ggplot2::coord_cartesian(clip = 'off') +
+    ggplot2::theme_minimal() +
+    kasstylesr::kas_style() +
+    ggplot2::labs(
+      title = "Average persistent absence over time in England",
+      subtitle = "Split by school type. Only includes persistent absentees.",
+      x = "",
+      y = "Overall absence rate (%)",
+      colour = "School type:"
+    )
+}
+```
+
+
+------------------------------------------------------------------------
+
+## Now make a `{targets}` pipeline
+
+<br>
+<br>
+
+```{.bash .code}
+├── _targets_analysis.R**
+├── _data/
+│   ├── raw_data.csv
+├── R/
+│   ├── functions.R
+```
+
+------------------------------------------------------------------------
+
+## Create a `{targets}` template
+
+```
+targets::tar_script()
+```
+
+<br>
+
+![](_images/tar_script.png)
+
+------------------------------------------------------------------------
+
+## There are 3 parts to a `{targets}` pipeline
+
+<br>
+
+::: r-stack
+::: {.fragment .fade-in-then-out}
+1.  Packages are loaded
+
+```{r}
+#| label: targets-pkgs
+#| eval: true
+
+library(targets)
+```
+:::
+
+::: {.fragment .fade-in-then-out}
+2.  Pipeline-specific options are set
+
+```{r}
+#| label: targets-options
+
+tar_option_set(packages = "utils")
+tar_source(here::here("R/functions.R"))
+```
+:::
+
+::: {.fragment .fade-in-then-out}
+3.  The pipeline itself, a series of *targets*
+
+```{r}
+#| label: targets-pipeline
+
+list(
+  tar_target(data, data.frame(x = sample.int(100), y = sample.int(100))),
+  tar_target(data_summary, summarize_data(data)) # Call your custom functions.
+)
+```
+:::
+:::
+
+::: notes
+- Due to the execution of the pipeline in parallel, load packages used in pipeline seperately.
+    - So the pkgs are available to all workers.
+- At the top of the script, think “pipeline infrastructure” packages ({targets} and some others).
+- Inside tar_option_set() think “functions that run inside the pipeline” packages.
+:::
+
+------------------------------------------------------------------------
+
+## The `{targets}` pipeline
+
+<br>
+
+::: r-stack
+::: {.fragment .fade-in-then-out}
+- It is simply a list of *targets*
+- A target is defined using `tar_target`
+- Each has 2 necessary inputs
+    - `name`
+    - `command` ~ the function that generates the target
+:::
+
+::: {.fragment .fade-in-then-out}
+So... a target defined as:
+
+```{r}
+#| label: target-eg
+tar_target(name = y, command = f(x))
+```
+
+<br>
+
+Can be understood as:
+
+```{r}
+#| label: target-fun
+y <- f(x)
+```
+
+<br>
+
+- Targets after this can also use the output of previous targets
+:::
+:::
+
+::: notes
+- A target is really just a step in teh analysis pipeline
+:::
+
+------------------------------------------------------------------------
+
+# Build the pipeline
+
+```{r}
+#| label: targets-destroy
+#| eval: true
+#| echo: false
+
+targets::tar_destroy(destroy = "all",ask = F)
+```
+
+
+```{r}
+#| label: targets-make
+#| eval: true
+
+tar_make(script = "src/_targets_analysis.R")
+```
+
+-----------------------------------------------------------------------
+
+## An empty global environment?
+
+![](_images/empty_environment.png)
+
+------------------------------------------------------------------------
+
+## What is going on?
+
+::: {.fragment .fade-in-then-out}
+- `{targets}` creates a pipeline of pure functions
+:::
+::: {.fragment .fade-in}
+- Running the pipeline does not depend on the global environment
+:::
+::: {.fragment .fade-in}
+- It also does not change anything outside its scope
+:::
+::: {.fragment .fade-in}
+- The pipeline is **PURE**
+:::
+
+------------------------------------------------------------------------
+
+#### Code walkthrough
+
+<br> <br>
+
+### Scraping Ofsted MI data
+
+<br> <br> <br>
+
+Source code is available at
+[https://github.com/JT-39/]({{< env url_targets_git >}}){target="_blank"}
+
+------------------------------------------------------------------------
+
+## Data pipeline
+
+<br>
+
+<section style="text-align: left;">
+
+::: left
+::: fragment
+1.  Scrape Ofsted data 🍴
+:::
+
+::: fragment
+2.  Clean the data 🛁
+:::
+
+::: fragment
+3.  Upload to SQL 📤
+:::
+:::
+
+</section>
+
+------------------------------------------------------------------------
+
+## Process map
+
+![](_images/ofsted-mi-process-map.jpg)
+
+
+------------------------------------------------------------------------
+
+## {targets} code dependency graph
+
