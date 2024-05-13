@@ -9,3 +9,5 @@ renv/
 .RData
 /outputs/
 /sheff-targets-demo/
+/_targets/
+_data/
