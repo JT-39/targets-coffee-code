@@ -13,34 +13,34 @@ targets::tar_source(here::here("src/R/functions.R"))
 list(
   # Point to data file (not loaded)
   targets::tar_target(
-    name = ab_data_file,
+    name = data_file,
     command = here::here("_data/raw/1_absence_3term_nat_reg_la.csv"),
     format = "file"
     ),
 
   # Pull the national absence
   targets::tar_target(
-    name = nat_ab_data,
-    command = get_nat_absence_data(ab_data_file)
+    name = nat_data,
+    command = get_nat_absence_data(data_file)
     ),
 
   # Format the date
   targets::tar_target(
-    name = nat_ab_data_clean,
-    command = format_time_period(nat_ab_data)
+    name = nat_data_clean,
+    command = format_time_period(nat_data)
     ),
 
   # Fit a linear model
   targets::tar_target(
-    name = ab_model,
-    command = fit_model(nat_ab_data_clean)
+    name = model,
+    command = fit_model(nat_data_clean)
   ),
 
   # Plot the data and model
   targets::tar_target(
-    name = ab_plot,
-    command = plot_model(model = ab_model,
-                         data = nat_ab_data_clean),
+    name = plot,
+    command = plot_model(model = model,
+                         data = nat_data_clean),
     format = "file"
   )
 

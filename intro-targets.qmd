@@ -541,12 +541,13 @@ targets::tar_script()
 
 ------------------------------------------------------------------------
 
-## There are 3 parts to a `{targets}` pipeline
+## There are 3 parts to the pipeline
 
 <br>
 
-::: r-stack
-::: {.fragment .fade-in-then-out}
+<div class="left-align">
+
+::: {.fragment .fade-in}
 1.  Packages are loaded
 
 ```{r}
@@ -557,7 +558,7 @@ library(targets)
 ```
 :::
 
-::: {.fragment .fade-in-then-out}
+::: {.fragment .fade-in}
 2.  Pipeline-specific options are set
 
 ```{r}
@@ -568,7 +569,7 @@ tar_source(here::here("R/functions.R"))
 ```
 :::
 
-::: {.fragment .fade-in-then-out}
+::: {.fragment .fade-in}
 3.  The pipeline itself, a series of *targets*
 
 ```{r}
@@ -580,7 +581,8 @@ list(
 )
 ```
 :::
-:::
+
+</div>
 
 ::: notes
 - Due to the execution of the pipeline in parallel, load packages used in pipeline seperately.
@@ -594,41 +596,57 @@ list(
 ## The `{targets}` pipeline
 
 <br>
+<div class="left-align">
 
-::: r-stack
 ::: {.fragment .fade-in-then-out}
 - It is simply a list of *targets*
-- A target is defined using `tar_target`
+:::
+::: {.fragment .fade-in-then-out}
+- A target is defined using `tar_target()`
+:::
+::: {.fragment .fade-in-then-out}
 - Each has 2 necessary inputs
     - `name`
     - `command` ~ the function that generates the target
 :::
 
-::: {.fragment .fade-in-then-out}
+</div>
+
+------------------------------------------------------------------------
+
+## The `{targets}` pipeline
+
+<br>
+<div class="left-align">
+
+::: {.fragment .fade-in}
 So... a target defined as:
 
 ```{r}
 #| label: target-eg
 tar_target(name = y, command = f(x))
 ```
-
+:::
 <br>
 
+::: {.fragment .fade-in}
 Can be understood as:
 
 ```{r}
 #| label: target-fun
 y <- f(x)
 ```
-
+:::
 <br>
 
-- Targets after this can also use the output of previous targets
-:::
+::: {.fragment .fade-in}
+- Targets after this can use the output of previous targets
 :::
 
+</div>
+
 ::: notes
-- A target is really just a step in teh analysis pipeline
+- A target is really just a step in the analysis pipeline
 :::
 
 ------------------------------------------------------------------------
@@ -661,17 +679,173 @@ tar_make(script = "src/_targets_analysis.R")
 
 ## What is going on?
 
+<div class="left-align">
 ::: {.fragment .fade-in-then-out}
 - `{targets}` creates a pipeline of pure functions
 :::
-::: {.fragment .fade-in}
+::: {.fragment .fade-in-then-out}
 - Running the pipeline does not depend on the global environment
 :::
-::: {.fragment .fade-in}
+::: {.fragment .fade-in-then-out}
 - It also does not change anything outside its scope
 :::
-::: {.fragment .fade-in}
+::: {.fragment .fade-in-then-out}
 - The pipeline is **PURE**
+:::
+</div>
+
+------------------------------------------------------------------------
+
+<div class="slide-top-title">
+`_targets/`
+</div>
+
+<br>
+<div class="left-align">
+::: {.fragment .fade-in-then-out}
+- The outputs are stored in `_targets/objects/`
+:::
+::: {.fragment .fade-in-then-out}
+- Each target is saved as in the `.rds` format
+:::
+::: {.fragment .fade-in-then-out}
+- So, **MUST** add `_targets/` to `.gitignore` (for GitHub)
+:::
+</div>
+
+------------------------------------------------------------------------
+
+<div class="slide-top-title">
+`_targets/`
+</div>
+
+<br>
+<div class="left-align">
+
+::: {.fragment .fade-in-then-out}
+To read in targets:
+```{r}
+#| label: tar-read
+#| eval: true
+
+tar_read(model)
+```
+:::
+::: {.fragment .fade-in-then-out}
+To load targets into the global environment:
+```{r}
+#| label: tar-load
+
+tar_load(model)
+```
+:::
+
+</div>
+
+::: notes
+- Well not strictly pure...
+- `.rds` is a R-specific format to save *any* type of object
+- Can be save and read with `saveRDS()` and `readRDS()`
+- Also should note that the pipeline is composition of pure functions.
+- Pure functions:
+    - Referentially transparent function is a function that does not use
+    any variable that is not also one of its inputs.
+    - A function that does not interact in any way with the global environment.
+- Functions with only side-effects will be difficult to handle. (base plot())
+:::
+------------------------------------------------------------------------
+
+## Handling files
+
+::: {.callout-warning title="Advanced"}
+<div class="left-align">
+
+::: {.fragment .fade-in}
+- **MUST** use the data's file path initially (and `format` = "file")
+:::
+::: {.fragment .fade-in}
+```{r}
+#| label: targets-file
+
+targets::tar_target(
+    name = data,
+    command = here::here("_data/raw/1_absence_3term_nat_reg_la.csv"),
+    format = "file"
+)
+```
+:::
+::: {.fragment .fade-in}
+- Then use the file path target to read in the data
+:::
+::: {.fragment .fade-in}
+```{r}
+#| label: targets-load_data
+
+targets::tar_target(
+    name = nat_data,
+    command = read.csv(data)
+)
+```
+:::
+::: {.fragment .fade-in}
+- Otherwise, `{targets}` will not track the data (any changes to it)
+:::
+
+</div>
+
+:::
+
+------------------------------------------------------------------------
+
+## File Big Brother
+
+<div class="left-align">
+::: {.fragment .fade-in-then-out}
+- `{targets}` keeps track of changes in files and functions
+:::
+::: {.fragment .fade-in-then-out}
+- Any changes will result in the targets being identified as out-of-date
+:::
+::: {.fragment .fade-in-then-out}
+- So, are re-computed (and their dependencies)
+:::
+::: {.fragment .fade-in-then-out}
+- We can visualise this...
+:::
+</div>
+
+------------------------------------------------------------------------
+
+## Code dependency graph
+
+![](./_images/complete_code_dependency_graph.png)
+
+------------------------------------------------------------------------
+
+## Let's change something
+
+::: r-stack
+
+::: {.fragment .fade-in-then-out width="450" height="300"}
+<div class="left-align">
+- We now filter out the years 2020 & 2021
+
+```{r}
+#| label: targets-filter_covid
+
+format_time_period <- function(data) {
+  data |>
+    ... |>
+    dplyr::filter(Date %in% c(2020, 2021))
+}
+```
+</div>
+
+:::
+
+::: {.fragment .fade-in-then-out width="450" height="300"}
+![](./_images/incomplete_code_dependency_graph.png)
+:::
 :::
 
 ------------------------------------------------------------------------
