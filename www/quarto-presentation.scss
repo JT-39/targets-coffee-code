@@ -15,22 +15,26 @@ h1, h2, h3, h4, p {
 }
 
 h1, h2 {
-    text-align: center;
+  text-align: center;
 }
 
 /*-- scss:rules --*/
 
 .container{
-    display: flex;
+  display: flex;
 }
 
 .col{
-    flex: 1;
+  flex: 1;
 }
 
 .reveal .slide blockquote {
   border-left: 3px solid $text-muted;
   padding-left: 0.5em;
+}
+
+.reveal .slide {
+  text-align: center;
 }
 
 .reveal .footer {
@@ -40,11 +44,11 @@ h1, h2 {
 }
 
 .reveal .slide-menu-button {
-    left: 100px;
-    top: 30px;
-    padding-left: 20px;
-    color: #005EB8;
-  }
+  left: 100px;
+  top: 30px;
+  padding-left: 20px;
+  color: #005EB8;
+}
 
 .reveal .progress {
   background: #FFF;
@@ -54,10 +58,6 @@ h1, h2 {
 
 /*-- scss:rules --*/
 .smaller-left {
-    font-size: 0.8em; /* Adjust this value to make the text smaller or larger */
-    text-align: left;
-  }
-  
-.center {
-    text-align: center;
-  }
+  font-size: 0.8em; /* Adjust this value to make the text smaller or larger */
+  text-align: left;
+}

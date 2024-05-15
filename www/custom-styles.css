@@ -1,15 +1,11 @@
 /* styles.css */
 
 .left-align {
-    text-align: left;
+  text-align: left;
+  vertical-align: middle;
 }
 
-.slide-top-title {
-    font-family: 'Lato', Arial, sans-serif;
-    font-size: 1.6em;
-    font-weight: bold;
-    position: absolute;
-    bottom: 350px;
-    left: 50%;
-    transform: translateX(-50%);
+.center {
+  text-align: center;
+  vertical-align: middle;
 }

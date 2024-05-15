@@ -18,13 +18,17 @@ format:
 
 ## `{targets}` is a pipeline tool
 
-<br>
+<section class="center">
 
 Use it to coordinate your data analysis projects.
+</section>
 
 ------------------------------------------------------------------------
 
+<div class="center">
+
 ## Why use `{targets}`?
+</div>
 
 ------------------------------------------------------------------------
 
@@ -298,7 +302,7 @@ digraph G {
 
 ## How does `{targets}` combat this?
 
-<section style="text-align: left;">
+<section class="left-align">
 
 <br><br>
 
@@ -332,9 +336,12 @@ data & upstream dependencies have not changed.
 
 ------------------------------------------------------------------------
 
+<section class="center">
+
 "`{targets}` implicitly nudges users toward a clean,
 function-oriented programming style that fits the intent of the
 R language"
+</section>
 
 ------------------------------------------------------------------------
 
@@ -364,6 +371,7 @@ usethis::create_project(path = r"(C:\Users\jtufts\Documents\targets-demo)")
 
 ::: {.callout-tip}
 <section style="text-align: left;">
+
 Quick plug that you can use my package to create a pre-populated
 R project directory!
 ```{r}
@@ -377,13 +385,14 @@ dauRtemplate::dau_proj_template(path = r"(C:\Users\jtufts\Documents\targets-demo
 More information here:
 [https://github.com/JT-39/dau-R-template-ext]({{< env url_dauR_template >}}){target="_blank"}
 </section>
+
 :::
 
 ------------------------------------------------------------------------
 
 ## Develop your data pipeline
 
-<br>
+<br><br>
 
 The project directory could look something like...
 
@@ -413,7 +422,6 @@ The project directory could look something like...
 
 ```{r}
 #| label: analysis
-#| eval: false
 
 source(here::here("src/R/functions.R"))
 
@@ -439,7 +447,6 @@ plot_model(model, df_nat_absence)
 
 ```{r}
 #| label: functions
-#| eval: false
 
 # Pull national absence from file
 get_nat_absence_data <- function(file_path) {
@@ -549,7 +556,6 @@ targets::tar_script()
 
 ## There are 3 parts to the pipeline
 
-<br>
 <div class="left-align">
 
 ::: {.fragment .fade-in-then-semi-out}
@@ -572,7 +578,7 @@ tar_source(here::here("R/functions.R"))
 ```
 :::
 
-::: {.fragment .fade-in-then-semi-out}
+::: {.fragment .fade-in}
 3.  The pipeline itself, a series of *targets*
 ```{r}
 #| label: targets-pipeline
@@ -604,7 +610,7 @@ packages ({targets} and some others).
 ## The `{targets}` pipeline
 
 <br>
-<div class="left-align">
+<section class="left-align">
 
 ::: {.fragment .fade-in-then-semi-out}
 - It is simply a list of *targets*
@@ -612,22 +618,23 @@ packages ({targets} and some others).
 ::: {.fragment .fade-in-then-semi-out}
 - A target is defined using `tar_target()`
 :::
-::: {.fragment .fade-in-then-semi-out}
+::: {.fragment .fade-in}
 - Each has 2 necessary inputs
     - `name`
     - `command` ~ the function that generates the target
 :::
 
-</div>
+</section>
 
 ------------------------------------------------------------------------
 
 ## The `{targets}` pipeline
 
 <br>
-<div class="left-align">
 
-::: {.fragment .fade-in}
+<section class="left-align">
+
+::: {.fragment}
 So... a target defined as:
 ```{r}
 #| label: target-target
@@ -651,7 +658,7 @@ y <- f(x)
 - Targets after this can use the output of previous targets
 :::
 
-</div>
+</section>
 
 ::: notes
 - A target is really just a step in the analysis pipeline
@@ -659,7 +666,15 @@ y <- f(x)
 
 ------------------------------------------------------------------------
 
+## The `{targets}` pipeline
+
+
+
+------------------------------------------------------------------------
+
 ## Build the pipeline
+
+<br><br>
 
 ```{r}
 #| label: targets-destroy
@@ -668,6 +683,7 @@ y <- f(x)
 
 targets::tar_destroy(destroy = "all",ask = F)
 ```
+
 
 ```{r}
 #| label: targets-make
@@ -686,7 +702,9 @@ tar_make(script = "src/_targets_analysis.R")
 
 ## What is going on?
 
-<div class="left-align">
+<br>
+
+<section class="left-align">
 ::: {.fragment .fade-in-then-semi-out}
 - `{targets}` creates a pipeline of pure functions
 :::
@@ -699,13 +717,14 @@ tar_make(script = "src/_targets_analysis.R")
 ::: {.fragment .fade-in-then-semi-out}
 - The pipeline is **PURE**
 :::
-</div>
+</section>
 
 ------------------------------------------------------------------------
 
 ## `_targets/`
 
-<br>
+<br><br>
+
 <div class="left-align">
 ::: {.fragment .fade-in-then-semi-out}
 - The outputs are stored in `_targets/objects/`
