@@ -398,7 +398,7 @@ The project directory could look something like...
 
 <br>
 
-```{.bash .code}
+```{.bash .code code-line-numbers="false"}
 ├── analysis.R
 ├── _data/
 │   ├── raw_data.csv
@@ -556,7 +556,7 @@ targets::tar_script()
 
 ## There are 3 parts to the pipeline
 
-<div class="left-align">
+<section class="left-align">
 
 ::: {.fragment .fade-in-then-semi-out}
 1.  Packages are loaded
@@ -593,7 +593,7 @@ list(
 ```
 :::
 
-</div>
+</section>
 
 ::: notes
 - Due to the execution of the pipeline in parallel,
@@ -609,7 +609,7 @@ packages ({targets} and some others).
 
 ## The `{targets}` pipeline
 
-<br>
+<br><br>
 <section class="left-align">
 
 ::: {.fragment .fade-in-then-semi-out}
@@ -696,13 +696,15 @@ tar_make(script = "src/_targets_analysis.R")
 
 ## An empty global environment?
 
+<br>
+
 ![](_images/empty_environment.png)
 
 ------------------------------------------------------------------------
 
 ## What is going on?
 
-<br>
+<br><br>
 
 <section class="left-align">
 ::: {.fragment .fade-in-then-semi-out}
@@ -725,7 +727,7 @@ tar_make(script = "src/_targets_analysis.R")
 
 <br><br>
 
-<div class="left-align">
+<section class="left-align">
 ::: {.fragment .fade-in-then-semi-out}
 - The outputs are stored in `_targets/objects/`
 :::
@@ -735,14 +737,14 @@ tar_make(script = "src/_targets_analysis.R")
 ::: {.fragment .fade-in-then-semi-out}
 - So, **MUST** add `_targets/` to `.gitignore` (for GitHub)
 :::
-</div>
+</section>
 
 ------------------------------------------------------------------------
 
 ## `_targets/`
 
 <br>
-<div class="left-align">
+<section class="left-align">
 
 ::: {.fragment .fade-in-then-out}
 To read in targets:
@@ -753,6 +755,9 @@ To read in targets:
 tar_read(model)
 ```
 :::
+
+<br>
+
 ::: {.fragment .fade-in-then-out}
 To load targets into the global environment:
 ```{r}
@@ -762,7 +767,7 @@ tar_load(model)
 ```
 :::
 
-</div>
+</section>
 
 ::: notes
 - Well not strictly pure...
@@ -781,8 +786,10 @@ For example, `base::plot()`
 
 ## Handling files
 
+<br>
+
 ::: {.callout-warning title="Advanced"}
-<div class="left-align">
+<section class="left-align">
 
 ::: {.fragment .fade-in}
 - **MUST** use the data's file path initially (and `format` = "file")
@@ -815,7 +822,7 @@ targets::tar_target(
 - Otherwise, `{targets}` will not track the data (any changes to it)
 :::
 
-</div>
+</section>
 
 :::
 
@@ -823,7 +830,8 @@ targets::tar_target(
 
 ## File Big Brother
 
-<div class="left-align">
+<br><br>
+<section class="left-align">
 ::: {.fragment .fade-in-then-semi-out}
 - `{targets}` keeps track of changes in files and functions
 :::
@@ -836,12 +844,13 @@ targets::tar_target(
 ::: {.fragment .fade-in-then-semi-out}
 - We can visualise this...
 :::
-</div>
+</section>
 
 ------------------------------------------------------------------------
 
 ## Code dependency graph
 
+<br>
 ![](./_images/complete_code_dependency_graph.png)
 
 ------------------------------------------------------------------------
@@ -850,7 +859,7 @@ targets::tar_target(
 
 ::: r-stack
 ::: {.fragment .fade-in-then-out width="450" height="300"}
-<div class="left-align">
+<section class="left-align">
 - We now filter out the years 2020 & 2021
 
 ```{r}
@@ -862,11 +871,16 @@ format_time_period <- function(data) {
     dplyr::filter(Date %in% c(2020, 2021))
 }
 ```
-</div>
+</section>
 
 :::
+
+<br>
+
 ::: {.fragment .fade-in width="450" height="300"}
+<br>
 ![](./_images/incomplete_code_dependency_graph.png)
+
 :::
 :::
 
@@ -874,7 +888,8 @@ format_time_period <- function(data) {
 
 ## Parallel computation
 
-<div class="left-align">
+<br>
+<section class="left-align">
 ::: {.fragment .fade-in-then-semi-out}
 - Can run any indepedent steps (*targets*) in parallel
 :::
@@ -888,7 +903,7 @@ cutting computation time
 ::: {.fragment .fade-in-then-semi-out}
 - To set this up...
 :::
-</div>
+</section>
 
 ::: notes
 - Also could be useful on DataBricks where more cores and nodes may
@@ -899,7 +914,8 @@ be available.
 
 ## Parallel computation
 
-<div class="left-align">
+<br>
+<section class="left-align">
 ::: {.fragment .fade-in-then-out}
 Need to load a few more packages:
 
@@ -926,6 +942,8 @@ targets::tar_make_future(workers = 2)
 Simple as that!
 :::
 
+</section>
+
 ::: notes
 - Most of our laptops have around 7 cores.
 - Don't use all the cores though as some are needed for background
@@ -934,12 +952,16 @@ computer stuff!
 
 ------------------------------------------------------------------------
 
+<div class="center">
+
 ## Other features
+</div>
 
 ------------------------------------------------------------------------
 
 ## RMarkdown & Quarto
 
+<br>
 <section style="text-align: left;">
 ::: {.fragment .fade-in-then-semi-out}
 - Can include the rendering of a `.Rmd` or `.qmd` to the pipeline
@@ -947,6 +969,8 @@ computer stuff!
 ::: {.fragment .fade-in-then-semi-out}
 - Utilises the power of the `{targets}` computation
 :::
+
+<br>
 
 ::: r-stack
 ::: {.fragment .fade-in-then-out}
@@ -975,11 +999,28 @@ tar_read(plot)
 ```
 :::
 :::
-</div>
+</section>
 
 ------------------------------------------------------------------------
 
 ## SQL
+
+
+------------------------------------------------------------------------
+
+## Key takeaways
+
+
+------------------------------------------------------------------------
+
+<div class="center">
+
+## Thanks for hitting the target!
+</div>
+
+------------------------------------------------------------------------
+
+## Resources, links and email
 
 
 ------------------------------------------------------------------------
