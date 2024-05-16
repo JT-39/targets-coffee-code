@@ -43,5 +43,4 @@ list(
                          data = nat_data_clean),
     format = "file"
   )
-
 )

@@ -412,7 +412,7 @@ The project directory could look something like...
 
 <br>
 
-![](_images/absence_data.png)
+![](_images/absence_data.png){style="border: 2px solid grey;"}
 
 ------------------------------------------------------------------------
 
@@ -528,7 +528,7 @@ plot_model <- function(model, data) {
 
 <br><br>
 
-```{.bash .code}
+```{.bash .code code-line-numbers="false"}
 ├── _targets_analysis.R**
 ├── _data/
 │   ├── raw_data.csv
@@ -550,7 +550,7 @@ targets::tar_script()
 
 <br>
 
-![](_images/tar_script.png)
+![](_images/tar_script.png){style="border: 2px solid grey;"}
 
 ------------------------------------------------------------------------
 
@@ -668,7 +668,9 @@ y <- f(x)
 
 ## The `{targets}` pipeline
 
+<br>
 
+![](./_images/targets_pipeline.png){style="border: 2px solid grey;"}
 
 ------------------------------------------------------------------------
 
@@ -698,7 +700,7 @@ tar_make(script = "src/_targets_analysis.R")
 
 <br>
 
-![](_images/empty_environment.png)
+![](_images/empty_environment.png){style="border: 2px solid grey;"}
 
 ------------------------------------------------------------------------
 
@@ -851,17 +853,17 @@ targets::tar_target(
 ## Code dependency graph
 
 <br>
-![](./_images/complete_code_dependency_graph.png)
+![](./_images/complete_code_dependency_graph.png){style="border: 2px solid grey;"}
 
 ------------------------------------------------------------------------
 
 ## Let's change something
 
-::: r-stack
-::: {.fragment .fade-in-then-out width="450" height="300"}
-<section class="left-align">
-- We now filter out the years 2020 & 2021
+<br><br>
+<section style="text-align: left;">
 
+::: {.fragment .fade-in}
+- We now filter out the years 2020 & 2021
 ```{r}
 #| label: targets-filter_covid
 
@@ -871,17 +873,19 @@ format_time_period <- function(data) {
     dplyr::filter(Date %in% c(2020, 2021))
 }
 ```
+:::
+
 </section>
 
-:::
+------------------------------------------------------------------------
+
+## Let's change something
 
 <br>
 
 ::: {.fragment .fade-in width="450" height="300"}
-<br>
-![](./_images/incomplete_code_dependency_graph.png)
 
-:::
+![](./_images/incomplete_code_dependency_graph.png){style="border: 2px solid grey;"}
 :::
 
 ------------------------------------------------------------------------
