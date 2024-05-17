@@ -1,3 +1,7 @@
 QUARTO_PYTHON=C:\Users\jtufts\AppData\Roaming\pypoetry\venv\Scripts
 url_dauR_template=https://github.com/JT-39/dau-R-template-ext
-url_targets_git=https://github.com/JT-39/
+targets_pkg_manual=https://books.ropensci.org/targets/
+sql_targets_git=https://github.com/daranzolin/sqltargets
+ofsted_mi_github=https://github.com/JT-39/ofsted-mi-push
+slides_github=https://github.com/JT-39/targets-coffee-code
+youtube_targets=https://www.youtube.com/watch?v=Gqn7Xn4d5NI

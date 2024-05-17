@@ -4,7 +4,7 @@ title-slide-attributes:
   data-background-image: _images/targets_hex.png
   data-background-size: 200px
   data-background-position: center 90%
-subtitle: "An introduction to the package `{targets}`"
+subtitle: "An introduction to the package {`targets`}"
 execute: 
   echo: true
   eval: false
@@ -16,19 +16,23 @@ format:
 
 ------------------------------------------------------------------------
 
-## `{targets}` is a pipeline tool
+## <span style = "color:#4758AB;">{targets}</span> is a pipeline tool
 
 <section class="center">
 
-Use it to coordinate your data analysis projects.
+Use it to coordinate your data analysis projects
+
+🧑‍💻
+
 </section>
 
 ------------------------------------------------------------------------
 
-<div class="center">
+::: center
+## Why use <span style = "color:#4758AB;">{targets}</span>?
 
-## Why use `{targets}`?
-</div>
+🎯
+:::
 
 ------------------------------------------------------------------------
 
@@ -300,7 +304,7 @@ digraph G {
 
 ------------------------------------------------------------------------
 
-## How does `{targets}` combat this?
+## How does <span style = "color:#4758AB;">{targets}</span> combat this?
 
 <section class="left-align">
 
@@ -327,9 +331,10 @@ digraph G {
 </section>
 
 ::: notes
-- Watches the workflow and skips steps (targets) whose code,
+-   Watches the workflow and skips steps (targets) whose code,
 data & upstream dependencies have not changed.
-- When all targets are up to date, evidence that results match the code.
+-   When all targets are up to date,
+evidence that results match the code.
     -   Trust results.
     -   Confirm computation is reproducible
 :::
@@ -338,9 +343,10 @@ data & upstream dependencies have not changed.
 
 <section class="center">
 
-"`{targets}` implicitly nudges users toward a clean,
+"{`targets`} implicitly nudges users toward a clean,
 function-oriented programming style that fits the intent of the
 R language"
+
 </section>
 
 ------------------------------------------------------------------------
@@ -369,11 +375,12 @@ usethis::create_project(path = r"(C:\Users\jtufts\Documents\targets-demo)")
 
 <br>
 
-::: {.callout-tip}
+::: callout-tip
 <section style="text-align: left;">
 
-Quick plug that you can use my package to create a pre-populated
-R project directory!
+Quick plug that you can use my package to create a
+pre-populated R project directory!
+
 ```{r}
 #| label: setup-dauRtemplate
 
@@ -383,9 +390,9 @@ dauRtemplate::dau_proj_template(path = r"(C:\Users\jtufts\Documents\targets-demo
 <br>
 
 More information here:
-[https://github.com/JT-39/dau-R-template-ext]({{< env url_dauR_template >}}){target="_blank"}
-</section>
+<span class="link-underlined">[https://github.com/JT-39/dau-R-template-ext]({{< env url_dauR_template >}}){target="_blank"}</span>
 
+</section>
 :::
 
 ------------------------------------------------------------------------
@@ -398,7 +405,7 @@ The project directory could look something like...
 
 <br>
 
-```{.bash .code code-line-numbers="false"}
+``` {.bash .code code-line-numbers="false"}
 ├── analysis.R
 ├── _data/
 │   ├── raw_data.csv
@@ -524,12 +531,12 @@ plot_model <- function(model, data) {
 
 ------------------------------------------------------------------------
 
-## Now make a `{targets}` pipeline
+## Now make a <span style = "color:#4758AB;">{targets}</span> pipeline
 
 <br><br>
 
-```{.bash .code code-line-numbers="false"}
-├── _targets_analysis.R**
+``` {.bash .code code-line-numbers="false"}
+├── _targets_analysis.R*
 ├── _data/
 │   ├── raw_data.csv
 ├── R/
@@ -538,7 +545,7 @@ plot_model <- function(model, data) {
 
 ------------------------------------------------------------------------
 
-## Create a `{targets}` template
+## Create a <span style = "color:#4758AB;">{targets}</span> template
 
 <br>
 
@@ -560,6 +567,7 @@ targets::tar_script()
 
 ::: {.fragment .fade-in-then-semi-out}
 1.  Packages are loaded
+
 ```{r}
 #| label: targets-pkgs
 #| eval: true
@@ -570,6 +578,7 @@ library(targets)
 
 ::: {.fragment .fade-in-then-semi-out}
 2.  Pipeline-specific options are set
+
 ```{r}
 #| label: targets-options
 
@@ -580,6 +589,7 @@ tar_source(here::here("R/functions.R"))
 
 ::: {.fragment .fade-in}
 3.  The pipeline itself, a series of *targets*
+
 ```{r}
 #| label: targets-pipeline
 
@@ -596,77 +606,84 @@ list(
 </section>
 
 ::: notes
-- Due to the execution of the pipeline in parallel,
+-   Due to the execution of the pipeline in parallel,
 load packages used in pipeline seperately.
-    - So the pkgs are available to all workers.
-- At the top of the script, think “pipeline infrastructure”
-packages ({targets} and some others).
-- Inside tar_option_set() think
-“functions that run inside the  ipeline” packages.
+    -   So the pkgs are available to all workers.
+-   At the top of the script, think “pipeline infrastructure” packages
+({targets} and some others).
+-   Inside tar_option_set() think
+“functions that run inside the pipeline” packages.
 :::
 
 ------------------------------------------------------------------------
 
-## The `{targets}` pipeline
+## The <span style = "color:#4758AB;">{targets}</span> pipeline
 
 <br><br>
+
 <section class="left-align">
 
 ::: {.fragment .fade-in-then-semi-out}
-- It is simply a list of *targets*
+-   It is simply a list of *targets* 🎯
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- A target is defined using `tar_target()`
+-   A target is defined using `tar_target()`
 :::
+
 ::: {.fragment .fade-in}
-- Each has 2 necessary inputs
-    - `name`
-    - `command` ~ the function that generates the target
+-   Each has 2 necessary inputs
+    -   `name`
+    -   `command` \~ the function that generates the target
 :::
 
 </section>
 
 ------------------------------------------------------------------------
 
-## The `{targets}` pipeline
+## The <span style = "color:#4758AB;">{targets}</span> pipeline
 
 <br>
 
 <section class="left-align">
 
-::: {.fragment}
+::: fragment
 So... a target defined as:
+
 ```{r}
 #| label: target-target
 
 tar_target(name = y, command = f(x))
 ```
 :::
+
 <br>
 
 ::: {.fragment .fade-in}
 Can be understood as:
+
 ```{r}
 #| label: target-fun
 
 y <- f(x)
 ```
 :::
+
 <br>
 
 ::: {.fragment .fade-in}
-- Targets after this can use the output of previous targets
+-   Targets after this can use the output of previous targets
 :::
 
 </section>
 
 ::: notes
-- A target is really just a step in the analysis pipeline
+-   A target is really just a step in the analysis pipeline
 :::
 
 ------------------------------------------------------------------------
 
-## The `{targets}` pipeline
+## The <span style = "color:#4758AB;">{targets}</span> pipeline
 
 <br>
 
@@ -686,7 +703,6 @@ y <- f(x)
 targets::tar_destroy(destroy = "all",ask = F)
 ```
 
-
 ```{r}
 #| label: targets-make
 #| eval: true
@@ -694,7 +710,7 @@ targets::tar_destroy(destroy = "all",ask = F)
 tar_make(script = "src/_targets_analysis.R")
 ```
 
------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ## An empty global environment?
 
@@ -709,47 +725,89 @@ tar_make(script = "src/_targets_analysis.R")
 <br><br>
 
 <section class="left-align">
+
 ::: {.fragment .fade-in-then-semi-out}
-- `{targets}` creates a pipeline of pure functions
+-   {`targets`} creates a pipeline of pure functions
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- Running the pipeline does not depend on the global environment
+-   Running the pipeline does not depend on the global environment 🌍
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- It also does not change anything outside its scope
+-   It also does not change anything outside its scope 🔭
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- The pipeline is **PURE**
+-   The pipeline is **PURE**
 :::
+
 </section>
 
 ------------------------------------------------------------------------
 
-## `_targets/`
+## <span style = "color:#4758AB;">_targets/</span>
 
 <br><br>
 
 <section class="left-align">
+
 ::: {.fragment .fade-in-then-semi-out}
-- The outputs are stored in `_targets/objects/`
+-   The outputs are stored in `_targets/objects/`
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- Each target is saved as in the `.rds` format
+-   Each target is saved as an object in the `.rds` format
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- So, **MUST** add `_targets/` to `.gitignore` (for GitHub)
+-   So, you **MUST** add `_targets/` to `.gitignore`
+(for GitHub)
+☝️
 :::
+
 </section>
 
 ------------------------------------------------------------------------
 
-## `_targets/`
+## <span style = "color:#4758AB;">_targets/</span>
 
 <br>
+
+::: {.fragment .fade-in}
+
+```{.bash .code code-line-numbers="false"}
+_targets/
+├── meta
+│   ├── meta
+│   ├── process
+│   └── progress
+├── objects
+│   ├── model
+│   ├── nat_data
+│   └── nat_data_clean
+└── user
+```
+:::
+
+<br>
+
+::: {.fragment .fade-in-then}
+
+![](_images/_targets_objects.png){style="border: 2px solid grey;"}
+:::
+
+------------------------------------------------------------------------
+
+## <span style = "color:#4758AB;">_targets/</span>
+
+<br>
+
 <section class="left-align">
 
 ::: {.fragment .fade-in-then-out}
-To read in targets:
+To display targets:
+
 ```{r}
 #| label: tar-read
 #| eval: true
@@ -762,6 +820,7 @@ tar_read(model)
 
 ::: {.fragment .fade-in-then-out}
 To load targets into the global environment:
+
 ```{r}
 #| label: tar-load
 
@@ -772,18 +831,19 @@ tar_load(model)
 </section>
 
 ::: notes
-- Well not strictly pure...
-- `.rds` is a R-specific format to save *any* type of object
-- Can be save and read with `saveRDS()` and `readRDS()`
-- Also should note that the pipeline is composition of pure functions.
-- Pure functions:
-    - Referentially transparent function is a function that does
-    not use any variable that is not also one of its inputs.
-    - A function that does not interact in any way with the
+-   Well not strictly pure...
+-   `.rds` is a R-specific format to save *any* type of object
+-   Can be save and read with `saveRDS()` and `readRDS()`
+-   Also should note that the pipeline is composition of pure functions.
+-   Pure functions:
+    -   Referentially transparent function is a function that does not
+    use any variable that is not also one of its inputs.
+    -   A function that does not interact in any way with the
     global environment.
-- Functions with only side-effects will be difficult to handle.
+-   Functions with only side-effects will be difficult to handle.
 For example, `base::plot()`
 :::
+
 ------------------------------------------------------------------------
 
 ## Handling files
@@ -794,8 +854,9 @@ For example, `base::plot()`
 <section class="left-align">
 
 ::: {.fragment .fade-in}
-- **MUST** use the data's file path initially (and `format` = "file")
+-   **MUST** use the data's file path initially (and `format = "file"`)
 :::
+
 ::: {.fragment .fade-in}
 ```{r}
 #| label: targets-file
@@ -807,9 +868,11 @@ targets::tar_target(
 )
 ```
 :::
+
 ::: {.fragment .fade-in}
-- Then use the file path target to read in the data
+-   Then use the file path target to read in the data
 :::
+
 ::: {.fragment .fade-in}
 ```{r}
 #| label: targets-load_data
@@ -820,12 +883,12 @@ targets::tar_target(
 )
 ```
 :::
+
 ::: {.fragment .fade-in}
-- Otherwise, `{targets}` will not track the data (any changes to it)
+-   Otherwise, {`targets`} will not track the data (any changes to it)
 :::
 
 </section>
-
 :::
 
 ------------------------------------------------------------------------
@@ -833,37 +896,44 @@ targets::tar_target(
 ## File Big Brother
 
 <br><br>
+
 <section class="left-align">
+
 ::: {.fragment .fade-in-then-semi-out}
-- `{targets}` keeps track of changes in files and functions
+-   {`targets`} keeps track of changes in files and functions 🕵️
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- Any changes will result in the targets being identified as out-of-date
+-   Any changes will result in the targets being identified as out-of-date
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- So, are re-computed (and their dependencies)
+-   So, are re-computed (and their dependencies)
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- We can visualise this...
+-   We can visualise this...
 :::
+
 </section>
 
 ------------------------------------------------------------------------
 
 ## Code dependency graph
 
-<br>
-![](./_images/complete_code_dependency_graph.png){style="border: 2px solid grey;"}
+<br> ![](./_images/complete_code_dependency_graph.png){style="border: 2px solid grey;"}
 
 ------------------------------------------------------------------------
 
 ## Let's change something
 
 <br><br>
+
 <section style="text-align: left;">
 
 ::: {.fragment .fade-in}
-- We now filter out the years 2020 & 2021
+-   We now filter out the years 2020 & 2021
+
 ```{r}
 #| label: targets-filter_covid
 
@@ -884,34 +954,43 @@ format_time_period <- function(data) {
 <br>
 
 ::: {.fragment .fade-in width="450" height="300"}
-
 ![](./_images/incomplete_code_dependency_graph.png){style="border: 2px solid grey;"}
 :::
 
+::: notes
+-   The graph will also highlight in red if there is an
+error in the pipeline.
+:::
+
 ------------------------------------------------------------------------
 
 ## Parallel computation
 
 <br>
+
 <section class="left-align">
+
 ::: {.fragment .fade-in-then-semi-out}
-- Can run any indepedent steps (*targets*) in parallel
+-   Can run any independent steps (*targets*) in parallel 🔀
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- We are able to harness any GPU cores available,
-cutting computation time
+-   We are able to harness any GPU cores available, cutting computation time ✂️
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- `{targets}` knows which parts of the pipeline can be ran in parallel
+-   {`targets`} knows which parts of the pipeline can be ran in parallel
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- To set this up...
+-   To set this up...
 :::
+
 </section>
 
 ::: notes
-- Also could be useful on DataBricks where more cores and nodes may
-be available.
+-   Also could be useful on DataBricks where more cores and
+nodes may be available.
 :::
 
 ------------------------------------------------------------------------
@@ -919,7 +998,9 @@ be available.
 ## Parallel computation
 
 <br>
+
 <section class="left-align">
+
 ::: {.fragment .fade-in-then-out}
 Need to load a few more packages:
 
@@ -932,8 +1013,9 @@ library(future.callr)
 plan(callr)
 ```
 :::
+
 ::: {.fragment .fade-in-then-out}
-Utilise the `{targets}` function to run in parallel:
+Utilise the {`targets`} function to run in parallel:
 
 ```{r}
 #| label: targets-parallel
@@ -942,36 +1024,41 @@ Utilise the `{targets}` function to run in parallel:
 targets::tar_make_future(workers = 2)
 ```
 :::
+
 ::: {.fragment .fade-in}
-Simple as that!
+Simple as that! 💥
 :::
 
 </section>
 
 ::: notes
-- Most of our laptops have around 7 cores.
-- Don't use all the cores though as some are needed for background
-computer stuff!
+-   Most of our laptops have around 7 cores.
+-   Don't use all the cores though as some are needed for
+background computer stuff!
 :::
 
 ------------------------------------------------------------------------
 
-<div class="center">
-
+::: center
 ## Other features
-</div>
+
+🔮
+:::
 
 ------------------------------------------------------------------------
 
 ## RMarkdown & Quarto
 
 <br>
+
 <section style="text-align: left;">
+
 ::: {.fragment .fade-in-then-semi-out}
-- Can include the rendering of a `.Rmd` or `.qmd` to the pipeline
+-   Can include the rendering of a `.Rmd` or `.qmd` to the pipeline
 :::
+
 ::: {.fragment .fade-in-then-semi-out}
-- Utilises the power of the `{targets}` computation
+-   Utilises the power of the {`targets`} computation 🔋
 :::
 
 <br>
@@ -979,14 +1066,17 @@ computer stuff!
 ::: r-stack
 ::: {.fragment .fade-in-then-out}
 Load package needed
+
 ```{r}
 #| label: targets-md
 
 libray(tarchetypes)
 ```
 :::
+
 ::: {.fragment .fade-in-then-out}
 Function to render Quarto file in the pipeline
+
 ```{r}
 #| label: targets-render
 
@@ -996,82 +1086,123 @@ tar_render(
 )
 ```
 :::
+
 ::: {.fragment .fade-in-then-out}
 How to load targets in the Quarto file
+
 ```{{r}}
 tar_read(plot)
 ```
 :::
 :::
+
 </section>
 
 ------------------------------------------------------------------------
 
 ## SQL
 
+<section class="left-align">
+
+::: {.fragment .fade-in-then-out}
+-   When executing code to SQL you will need to create
+connect and disconnect each time 🔌
+
+```{r}
+#| label: targets-sql_conn
+
+function(yml_key) {
+  conn <- connect_sql_db(yml_key)
+  on.exit(DBI::dbDisconnect(conn, shutdown = TRUE))
+
+  DBI::dbGetQuery(...)}
+```
+:::
+
+::: {.fragment .fade-in}
+-   Also the package {`sqltargets`} which applies {`targets`}
+principles to .sql files 📦
+:::
+
+::: r-stack
+::: {.fragment .fade-in-then-out}
+```{sql}
+#| label: sqltargets
+
+-- !preview conn=DBI::dbConnect(RSQLite::SQLite())
+-- tar_load(query_params)
+select id
+from table
+where age > {age_threshold}
+```
+:::
+
+::: {.fragment .fade-in}
+```{r}
+#| label: tar_sql
+
+tar_sql(query, path = "query.sql", query_params = query_params)
+```
+:::
+:::
+
+</section>
+
+::: notes
+-   SQL connection repetitio is to ensure the connection is
+closed and is reusable
+:::
 
 ------------------------------------------------------------------------
 
 ## Key takeaways
 
+<br><br>
 
-------------------------------------------------------------------------
+<section class="left-align">
 
-<div class="center">
-
-## Thanks for hitting the target!
-</div>
-
-------------------------------------------------------------------------
-
-## Resources, links and email
-
-
-------------------------------------------------------------------------
-
-#### Code walkthrough
-
-<br> <br>
-
-### Scraping Ofsted MI data
-
-<br> <br> <br>
-
-Source code is available at
-[https://github.com/JT-39/]({{< env url_targets_git >}}){target="_blank"}
-
-------------------------------------------------------------------------
-
-## Data pipeline
-
-<br>
-
-<section style="text-align: left;">
-
-::: left
-::: fragment
-1.  Scrape Ofsted data 🍴
+::: {.fragment .fade-in-then-semi-out}
+-   Enforces a modular, function based pipelines ✅ <br>(R best practice!)
 :::
 
-::: fragment
-2.  Clean the data 🛁
+::: {.fragment .fade-in-then-semi-out}
+-   Tracks changes to datasets and functions 🔍
 :::
 
-::: fragment
-3.  Upload to SQL 📤
-:::
+::: {.fragment .fade-in-then-semi-out}
+-   Provides efficient computation of pipelines ♻️
 :::
 
 </section>
 
 ------------------------------------------------------------------------
 
-## Process map
+::: center
+## We've hit the target!
 
-![](_images/ofsted-mi-process-map.jpg)
-
+🎯
+:::
 
 ------------------------------------------------------------------------
 
-## {targets} code dependency graph
+## Resources, links and email
 
+<br>
+
+<section class="left-align">
+
+-   {targets} manual: <span class="link-underlined">[Link]({{< env targets_pkg_manual >}}){target="_blank"}</span>
+
+-   YouTube {targets} walkthrough: <span class="link-underlined">[Link]({{< env youtube_targets >}}){target="_blank"}</span>
+
+-   Ofsted MI {targets} example pipeline GitHub: <span class="link-underlined">[Link]({{< env ofsted_mi_github >}}){target="_blank"}</span>
+
+-   These slides and mini {targets} example GitHub: <span class="link-underlined">[Link]({{< env slides_github >}}){target="_blank"}</span>
+
+-   {sqltargets} GitHub: <span class="link-underlined">[Link]({{< env sql_targets_git >}}){target="_blank"}</span>
+
+Email me at:
+
+<span style = "color:#4758AB;">jake.tufts@education.gov.uk</span>
+
+</section>
