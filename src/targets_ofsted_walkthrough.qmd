@@ -1,0 +1,52 @@
+---
+title: "Untitled"
+format: html
+---
+
+### Code walkthrough
+
+<br> <br>
+
+## Scraping Ofsted MI data
+
+<br> <br> <br>
+
+Source code is available at
+[https://github.com/JT-39/]({{< env ofsted_mi_github >}}){target="_blank"}
+
+------------------------------------------------------------------------
+
+## Data pipeline
+
+<br>
+
+<section style="text-align: left;">
+
+::: left
+::: fragment
+1.  Scrape Ofsted data 🍴
+:::
+
+::: fragment
+2.  Clean the data 🛁
+:::
+
+::: fragment
+3.  Upload to SQL 📤
+:::
+:::
+
+</section>
+
+------------------------------------------------------------------------
+
+## Process map
+
+![](_images/ofsted-mi-process-map.jpg)
+
+
+------------------------------------------------------------------------
+
+## {targets} code dependency graph
+
+![]
