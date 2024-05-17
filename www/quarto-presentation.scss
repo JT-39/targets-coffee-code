@@ -1,10 +1,10 @@
 /*-- scss:defaults --*/
 
 $body-color: #000;
-$link-color: #8A1538;
 $body-bg: #FFF;
 $code-block-bg: #FFF;
-$code-bg: #FFF;
+$code-bg: #F7F7F7;
+// $code-color: #924BB5;
 $dark-bg-text-color: #FFF;
 $dark-bg-link-color: #FFF;
 
@@ -16,6 +16,7 @@ h1, h2, h3, h4, p {
 
 h1, h2 {
   text-align: center;
+  $code-bg: #FFF;
 }
 
 /*-- scss:rules --*/

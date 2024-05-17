@@ -9,3 +9,15 @@
   text-align: center;
   vertical-align: middle;
 }
+
+.reveal .slide-logo {
+  height: 100px !important;
+  width: 100px !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+
+.link-underlined {
+  text-decoration: underline;
+  text-decoration-color: #2774DD;
+}

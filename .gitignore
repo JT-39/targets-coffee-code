@@ -3,11 +3,11 @@
 .RData
 .Ruserdata
 /_misc/
-*.html
+# *.html
 /.quarto/
 renv/
 .RData
-/outputs/
+# /outputs/
 /sheff-targets-demo/
 /_targets/
 _data/
