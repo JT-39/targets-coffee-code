@@ -2,7 +2,6 @@ project:
   title: intro-targets
   render: 
     - intro-targets.qmd
-  output-dir: _outputs
 author: "Jake Tufts"
 format:
   revealjs:
