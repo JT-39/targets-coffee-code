@@ -1191,15 +1191,17 @@ closed and is reusable
 
 <section class="left-align">
 
--   {targets} manual: <span class="link-underlined">[Link]({{< env targets_pkg_manual >}}){target="_blank"}</span>
+-   <span class="link-underlined">[{targets} manual]({{< env targets_pkg_manual >}}){target="_blank"}</span>
 
--   YouTube {targets} walkthrough: <span class="link-underlined">[Link]({{< env youtube_targets >}}){target="_blank"}</span>
+-   <span class="link-underlined">[YouTube {targets} walkthrough]({{< env youtube_targets >}}){target="_blank"}</span>
 
--   Ofsted MI {targets} example pipeline GitHub: <span class="link-underlined">[Link]({{< env ofsted_mi_github >}}){target="_blank"}</span>
+-   <span class="link-underlined">[Ofsted MI {targets} example pipeline GitHub]({{< env ofsted_mi_github >}}){target="_blank"}</span>
 
--   These slides and mini {targets} example GitHub: <span class="link-underlined">[Link]({{< env slides_github >}}){target="_blank"}</span>
+-   <span class="link-underlined">[These slides and mini {targets} example GitHub]({{< env slides_github >}}){target="_blank"}</span>
 
--   {sqltargets} GitHub: <span class="link-underlined">[Link]({{< env sql_targets_git >}}){target="_blank"}</span>
+-   <span class="link-underlined">[{sqltargets} GitHub]({{< env sql_targets_git >}}){target="_blank"}</span>
+
+-   <span class="link-underlined">[Building reproducible analytical pipelines with R - targets]({{< env bruno_targets >}}){target="_blank"}</span>
 
 Email me at:
 
