@@ -15,8 +15,7 @@ format_time_period <- function(data) {
   data |>
     dplyr::mutate(Date = lubridate::year(as.Date(extract_year(time_period),
                                                  format = "%Y")),
-                  .after=time_period) |>
-    dplyr::filter(Date %in% c(2020, 2021))
+                  .after=time_period)
 }
 
 
