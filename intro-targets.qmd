@@ -353,9 +353,15 @@ evidence that results match the code.
 
 ## Code walkthrough
 
-You can clone the repository at this link:
+<br>
+<br>
 
+If you want to follow along in your local R environment,
+you can clone the repository at this link:
 
+<br>
+
+<span class="link-underlined">[https://github.com/JT-39/targets-coffee-code-walkthrough]({{< env url_code_walkthrough_git >}}){target="_blank"}</span>
 
 ------------------------------------------------------------------------
 
@@ -1001,7 +1007,7 @@ error in the pipeline.
 
 ------------------------------------------------------------------------
 
-## You can make these as embedded graphs...
+## These can be embedded graphs...
 
 <br>
 
@@ -1285,17 +1291,17 @@ closed and is reusable
 
 <section class="left-align">
 
-- <span class="link-underlined">[{targets} manual]({{< env targets_pkg_manual >}}){target="_blank"}</span>
+- {targets} manual: <span class="link-underlined">[Link]({{< env targets_pkg_manual >}}){target="_blank"}</span>
 
-- <span class="link-underlined">[YouTube {targets} walkthrough]({{< env youtube_targets >}}){target="_blank"}</span>
+- YouTube {targets} walkthrough: <span class="link-underlined">[Link]({{< env youtube_targets >}}){target="_blank"}</span>
 
-- <span class="link-underlined">[Ofsted MI {targets} example pipeline GitHub]({{< env ofsted_mi_github >}}){target="_blank"}</span>
+- Ofsted MI {targets} example pipeline GitHub: <span class="link-underlined">[Link]({{< env ofsted_mi_github >}}){target="_blank"}</span>
 
-- <span class="link-underlined">[These slides and mini {targets} example GitHub]({{< env slides_github >}}){target="_blank"}</span>
+- These slides and mini {targets} example GitHub: <span class="link-underlined">[Link]({{< env slides_github >}}){target="_blank"}</span>
 
-- <span class="link-underlined">[{sqltargets} GitHub]({{< env sql_targets_git >}}){target="_blank"}</span>
+- {sqltargets} GitHub: <span class="link-underlined">[Link]({{< env sql_targets_git >}}){target="_blank"}</span>
 
-- <span class="link-underlined">[Building reproducible analytical pipelines with R - targets]({{< env bruno_targets >}}){target="_blank"}</span>
+- Building reproducible analytical pipelines with R: <span class="link-underlined">[Link]({{< env bruno_targets >}}){target="_blank"}</span>
 
 Email me at:
 
@@ -1305,20 +1311,15 @@ Email me at:
 
 ------------------------------------------------------------------------
 
-## Example of a larger pipeline
+## Example of a larger pipeline {.scrollable}
 
 <br>
-<section class="left-align">
-- <span class="link-underlined">[Ofsted MI {targets} example pipeline GitHub]({{< env ofsted_mi_github >}}){target="_blank"}</span>
-</section>
 
-<br>
-<br>
+[Ofsted MI {targets} example pipeline GitHub]({{< env ofsted_mi_github >}}){target="_blank"}
 
-![Process map](_images/ofsted-mi-process-map.jpg){style="border: 2px solid grey;"}
+![Process map](_images/ofsted-mi-process-map.jpg)
 
-------------------------------------------------------------------------
+![Targets pipeline](_images/ofsted_targets_pipeline.png)
 
-## .scrollable
 
-![Targets pipeline](_images/ofsted_targets_pipeline.png){style="border: 2px solid grey;"}
+
