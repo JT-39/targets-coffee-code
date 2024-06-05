@@ -16,7 +16,7 @@ format:
 
 ------------------------------------------------------------------------
 
-## <span style = "color:#4758AB;">{targets}</span> is a pipeline tool
+## [{targets}]{style="color:#4758AB;"} is a pipeline tool
 
 <section class="center">
 
@@ -28,7 +28,7 @@ Use it to coordinate your data analysis projects
 
 ------------------------------------------------------------------------
 
-## Why use <span style = "color:#4758AB;">{targets}</span>? {.center}
+## Why use [{targets}]{style="color:#4758AB;"}? {.center}
 
 🎯
 
@@ -36,9 +36,7 @@ Use it to coordinate your data analysis projects
 
 <section class="center">
 
-"{`targets`} implicitly nudges users toward a clean,
-function-oriented programming style that fits the intent of the
-R language"
+"{`targets`} implicitly nudges users toward a clean, function-oriented programming style that fits the intent of the R language"
 
 </section>
 
@@ -284,12 +282,12 @@ digraph G {
 }
 ```
 :::
-
 :::
 
 ------------------------------------------------------------------------
 
 ## Data analysis can be slow and repetitive
+
 ```{dot}
 //| label: full-end
 //| eval: true
@@ -313,7 +311,7 @@ digraph G {
 
 ------------------------------------------------------------------------
 
-## How does <span style = "color:#4758AB;">{targets}</span> combat this?
+## How does [{targets}]{style="color:#4758AB;"} combat this?
 
 <section class="left-align">
 
@@ -340,10 +338,8 @@ digraph G {
 </section>
 
 ::: notes
--   Watches the workflow and skips steps (targets) whose code,
-data & upstream dependencies have not changed.
--   When all targets are up to date,
-evidence that results match the code.
+-   Watches the workflow and skips steps (targets) whose code, data & upstream dependencies have not changed.
+-   When all targets are up to date, evidence that results match the code.
     -   Trust results.
     -   Confirm computation is reproducible
 :::
@@ -352,15 +348,13 @@ evidence that results match the code.
 
 ## Code walkthrough
 
-<br>
-<br>
+<br> <br>
 
-If you want to follow along in your local R environment,
-you can clone the repository at this link:
+If you want to follow along in your local R environment, you can clone the repository at this link:
 
 <br>
 
-<span class="link-underlined">[https://github.com/JT-39/targets-coffee-code-walkthrough]({{< env url_code_walkthrough_git >}}){target="_blank"}</span>
+[[https://github.com/JT-39/targets-coffee-code-walkthrough]({{< env url_code_walkthrough_git >}}){target="_blank"}]{.link-underlined}
 
 ------------------------------------------------------------------------
 
@@ -388,11 +382,10 @@ usethis::create_project(path = r"(C:\Users\jtufts\Documents\targets-demo)")
 
 <br>
 
-::: {.callout-tip}
+::: callout-tip
 <section style="text-align: left;">
 
-Quick plug that you can use my package to create a
-pre-populated R project directory!
+Quick plug that you can use my package to create a pre-populated R project directory!
 
 ```{r}
 #| label: setup-dauRtemplate
@@ -402,11 +395,9 @@ dauRtemplate::dau_proj_template(path = r"(C:\Users\jtufts\Documents\targets-demo
 
 <br>
 
-More information here:
-<span class="link-underlined">[https://github.com/JT-39/dau-R-template-ext]({{< env url_dauR_template >}}){target="_blank"}</span>
+More information here: [[https://github.com/JT-39/dau-R-template-ext]({{< env url_dauR_template >}}){target="_blank"}]{.link-underlined}
 
 </section>
-
 :::
 
 ------------------------------------------------------------------------
@@ -444,10 +435,10 @@ The project directory could look something like...
 ```{r}
 #| label: analysis
 
-source(here::here("src/R/functions.R"))
+source(here::here("R/functions.R"))
 
 # Path to absence data
-absence_data_file_path <- here::here("_data/raw/1_absence_3term_nat_reg_la.csv")
+absence_data_file_path <- here::here("_data/1_absence_3term_nat_reg_la.csv")
 
 # Extract national absence and format date
 df_nat_absence <- get_nat_absence_data(absence_data_file_path) |>
@@ -545,7 +536,51 @@ plot_model <- function(model, data) {
 
 ------------------------------------------------------------------------
 
-## Now make a <span style = "color:#4758AB;">{targets}</span> pipeline
+## Outputs
+
+<section class="center">
+
+```{r}
+#| label: analysis-out
+#| eval: true
+#| output: false
+#| echo: false
+
+source(here::here("src/R/functions.R"))
+
+# Path to absence data
+absence_data_file_path <- here::here("_data/raw/1_absence_3term_nat_reg_la.csv")
+
+# Extract national absence and format date
+df_nat_absence <- get_nat_absence_data(absence_data_file_path) |>
+  format_time_period()
+
+# Fit a linear model
+model <- fit_model(df_nat_absence)
+
+# Plot the data and model
+plot_model(model, df_nat_absence)
+```
+
+```{r}
+#| label: output-model
+#| eval: true
+
+model[1]
+model[2]
+```
+
+</section>
+
+------------------------------------------------------------------------
+
+## Outputs
+
+![](./_outputs/ab_plot.png){width="70%" height="70%"}
+
+------------------------------------------------------------------------
+
+## Now make a [{targets}]{style="color:#4758AB;"} pipeline
 
 <br><br>
 
@@ -559,7 +594,7 @@ plot_model <- function(model, data) {
 
 ------------------------------------------------------------------------
 
-## Create a <span style = "color:#4758AB;">{targets}</span> template
+## Create a [{targets}]{style="color:#4758AB;"} template
 
 <br>
 
@@ -602,7 +637,7 @@ tar_source(here::here("R/functions.R"))
 :::
 
 ::: {.fragment .fade-in}
-3.  The pipeline itself, a series of *targets*
+3.  The pipeline itself, a list of *targets*
 
 ```{r}
 #| label: targets-pipeline
@@ -620,18 +655,15 @@ list(
 </section>
 
 ::: notes
--   Due to the execution of the pipeline in parallel,
-load packages used in pipeline seperately.
+-   Due to the execution of the pipeline in parallel, load packages used in pipeline seperately.
     -   So the pkgs are available to all workers.
--   At the top of the script, think “pipeline infrastructure” packages
-({targets} and some others).
--   Inside tar_option_set() think
-“functions that run inside the pipeline” packages.
+-   At the top of the script, think “pipeline infrastructure” packages ({targets} and some others).
+-   Inside tar_option_set() think “functions that run inside the pipeline” packages.
 :::
 
 ------------------------------------------------------------------------
 
-## The <span style = "color:#4758AB;">{targets}</span> pipeline
+## The [{targets}]{style="color:#4758AB;"} pipeline
 
 <br><br>
 
@@ -655,7 +687,7 @@ load packages used in pipeline seperately.
 
 ------------------------------------------------------------------------
 
-## The <span style = "color:#4758AB;">{targets}</span> pipeline
+## The [{targets}]{style="color:#4758AB;"} pipeline
 
 <br>
 
@@ -697,7 +729,7 @@ y <- f(x)
 
 ------------------------------------------------------------------------
 
-## The <span style = "color:#4758AB;">{targets}</span> pipeline
+## The [{targets}]{style="color:#4758AB;"} pipeline
 
 <br>
 
@@ -706,8 +738,6 @@ y <- f(x)
 ------------------------------------------------------------------------
 
 ## Build the pipeline
-
-<br><br>
 
 ```{r}
 #| label: targets-destroy
@@ -721,8 +751,24 @@ targets::tar_destroy(destroy = "all",ask = F)
 #| label: targets-make
 #| eval: true
 
-tar_make(script = "src/_targets_analysis.R")
+targets::tar_make()
 ```
+
+::: {.fragment .fade-up}
+::: callout-tip
+<section class="left-align">
+
+Use the code below to set which script the {`target`} functions default to:
+
+```{r}
+#| label: targets-config
+
+targets::tar_config_set(script = "src/_targets_analysis.R")
+```
+
+</section>
+:::
+:::
 
 ------------------------------------------------------------------------
 
@@ -760,7 +806,7 @@ tar_make(script = "src/_targets_analysis.R")
 
 ------------------------------------------------------------------------
 
-## <span style = "color:#4758AB;">_targets/</span>
+## <span style = "color:#4758AB;">\_targets/</span>
 
 <br><br>
 
@@ -775,22 +821,18 @@ tar_make(script = "src/_targets_analysis.R")
 :::
 
 ::: {.fragment .fade-in-then-semi-out}
--   So, you **MUST** add `_targets/` to `.gitignore`
-(for GitHub)
-☝️
+-   So, you **MUST** add `_targets/` to `.gitignore` (for GitHub) ☝️
 :::
 
 </section>
 
 ------------------------------------------------------------------------
 
-## <span style = "color:#4758AB;">_targets/</span>
+## <span style = "color:#4758AB;">\_targets/</span>
 
 <br>
 
-::: {.fragment .fade-in}
-
-```{.bash .code code-line-numbers="false"}
+``` {.bash .code code-line-numbers="false"}
 _targets/
 ├── meta
 │   ├── meta
@@ -802,33 +844,38 @@ _targets/
 │   └── nat_data_clean
 └── user
 ```
-:::
 
 <br>
 
 ::: {.fragment .fade-in-then}
-
 ![](_images/_targets_objects.png){style="border: 2px solid grey;"}
 :::
 
 ------------------------------------------------------------------------
 
-## <span style = "color:#4758AB;">_targets/</span>
+## <span style = "color:#4758AB;">\_targets/</span>
 
 <br>
 
 <section class="left-align">
 
-::: {.fragment .fade-in-then-out}
 To display targets:
 
 ```{r}
-#| label: tar-read
+#| label: tar-read1
 #| eval: true
 
-tar_read(model)
+tar_read(model)[1]
 ```
-:::
+
+<br>
+
+```{r}
+#| label: tar-read2
+#| eval: true
+
+tar_read(model)[2]
+```
 
 </section>
 
@@ -838,23 +885,19 @@ tar_read(model)
 -   Can be save and read with `saveRDS()` and `readRDS()`
 -   Also should note that the pipeline is composition of pure functions.
 -   Pure functions:
-    -   Referentially transparent function is a function that does not
-    use any variable that is not also one of its inputs.
-    -   A function that does not interact in any way with the
-    global environment.
--   Functions with only side-effects will be difficult to handle.
-For example, `base::plot()`
+    -   Referentially transparent function is a function that does not use any variable that is not also one of its inputs.
+    -   A function that does not interact in any way with the global environment.
+-   Functions with only side-effects will be difficult to handle. For example, `base::plot()`
 :::
 
 ------------------------------------------------------------------------
 
-## <span style = "color:#4758AB;">_targets/</span>
+## <span style = "color:#4758AB;">\_targets/</span>
 
 <br>
 
 <section class="left-align">
 
-::: {.fragment .fade-in-then-out}
 To load targets into the global environment:
 
 ```{r}
@@ -863,56 +906,46 @@ To load targets into the global environment:
 tar_load(model)
 ```
 
-<br>
+</section>
+
+<br> <br> <br>
 
 ![](_images/tar_load_global_env.png){style="border: 2px solid grey;"}
 
-:::
-
-</section>
-
 ------------------------------------------------------------------------
 
-## Handling files
-
-<br>
+## Plots are different
 
 ::: {.callout-warning title="Advanced"}
 <section class="left-align">
 
-::: {.fragment .fade-in}
--   **MUST** use the data's file path initially (and `format = "file"`)
+::: {.fragment .fade-in-then-semi-out}
+-   A `target` must have a "physical" output. (Base plot produces side-effects... 🤒)
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+-   Luckily {`ggplot2`} produces plots as an output.
+:::
+::: {.fragment .fade-in-then-semi-out}
+-   But we probably want to save them somewhere!
 :::
 
 ::: {.fragment .fade-in}
-```{r}
-#| label: targets-file
+So we use `ggsave()` at the end of the plotting function:
 
-targets::tar_target(
-    name = data,
-    command = here::here("_data/raw/1_absence_3term_nat_reg_la.csv"),
-    format = "file"
-)
+```{r}
+#| label: targets-ggsave
+plot <- ggplot(...)
+
+ggplot2::ggsave(here::here("_outputs/ab_plot.png"),
+                plot = plot)
+
+return("_outputs/ab_plot.png")
 ```
 :::
 
 ::: {.fragment .fade-in}
--   Then use the file path target to read in the data
-:::
-
-::: {.fragment .fade-in}
-```{r}
-#| label: targets-load_data
-
-targets::tar_target(
-    name = nat_data,
-    command = read.csv(data)
-)
-```
-:::
-
-::: {.fragment .fade-in}
--   Otherwise, {`targets`} will not track the data (any changes to it)
+-   **NOTE**: We return the file path to keep {`targets`} happy 😇
 :::
 
 </section>
@@ -953,7 +986,7 @@ targets::tar_target(
 ```{r}
 #| label: targets-visnetwork
 
-targets::tar_visnetwork(script = "src/_targets_analysis.R")
+targets::tar_visnetwork(script = "_targets_analysis.R")
 ```
 
 ![](./_images/complete_code_dependency_graph.png){style="border: 2px solid grey;"}
@@ -991,18 +1024,40 @@ format_time_period <- function(data) {
 ```{r}
 #| label: targets-visnetwork-change
 
-targets::tar_visnetwork(script = "src/_targets_analysis.R")
+targets::tar_visnetwork(script = "_targets_analysis.R")
 ```
-
 
 ::: {.fragment .fade-in width="450" height="300"}
 ![](./_images/incomplete_code_dependency_graph.png){style="border: 2px solid grey;"}
 :::
 
 ::: notes
--   The graph will also highlight in red if there is an
-error in the pipeline.
+-   The graph will also highlight in red if there is an error in the pipeline.
 :::
+
+------------------------------------------------------------------------
+
+## Steps skipped
+
+<br> <br>
+
+```{r}
+#| label: targets-new-make
+
+targets::tar_make()
+```
+
+<br>
+
+```{{r}}
+v skipped target data_file
+v skipped target nat_data
+> dispatched target nat_data_clean
+o completed target nat_data_clean [0.03 seconds]
+v skipped target model
+v skipped target plot
+> ended pipeline [2.5 seconds]
+```
 
 ------------------------------------------------------------------------
 
@@ -1011,6 +1066,7 @@ error in the pipeline.
 <br>
 
 ```{mermaid}
+%%| label: mermaid-code-gph
 %%| eval: true
 %%| echo: false
 
@@ -1047,12 +1103,12 @@ linkStyle 1 stroke-width:0px;
 
 ## ... or save them as a .html
 
-<br> 
+<br>
 
 ```{r}
 #| label: targets-vis-save
 
-htmltools::save_html(html = targets::tar_visnetwork("src/_targets_analysis.R"),
+htmltools::save_html(html = targets::tar_visnetwork("_targets_analysis.R"),
                      file = "_outputs/code_pipeline.html")
 ```
 
@@ -1060,6 +1116,52 @@ htmltools::save_html(html = targets::tar_visnetwork("src/_targets_analysis.R"),
 ![](./_images/errored_code_dependency_graph.png){style="border: 2px solid grey;" height="450" width="800"}
 :::
 
+------------------------------------------------------------------------
+
+## Handling files
+
+<br>
+
+::: {.callout-warning title="Advanced"}
+<section class="left-align">
+
+::: {.fragment .fade-in}
+-   **MUST** use the data's file path initially (and `format = "file"`)
+:::
+
+::: {.fragment .fade-in}
+```{r}
+#| label: targets-file
+
+targets::tar_target(
+    name = data,
+    command = here::here("_data/1_absence_3term_nat_reg_la.csv"),
+    format = "file"
+)
+```
+:::
+
+::: {.fragment .fade-in}
+-   Then use the file path target to read in the data 📖
+:::
+
+::: {.fragment .fade-in}
+```{r}
+#| label: targets-load_data
+
+targets::tar_target(
+    name = nat_data,
+    command = read.csv(data)
+)
+```
+:::
+
+::: {.fragment .fade-in}
+-   Otherwise, {`targets`} will not track the data (any changes to it) 😴
+:::
+
+</section>
+:::
 
 ------------------------------------------------------------------------
 
@@ -1088,8 +1190,7 @@ htmltools::save_html(html = targets::tar_visnetwork("src/_targets_analysis.R"),
 </section>
 
 ::: notes
--   Also could be useful on DataBricks where more cores and
-nodes may be available.
+-   Also could be useful on DataBricks where more cores and nodes may be available.
 :::
 
 ------------------------------------------------------------------------
@@ -1132,8 +1233,7 @@ Simple as that! 💥
 
 ::: notes
 -   Most of our laptops have around 7 cores.
--   Don't use all the cores though as some are needed for
-background computer stuff!
+-   Don't use all the cores though as some are needed for background computer stuff!
 :::
 
 ------------------------------------------------------------------------
@@ -1202,8 +1302,7 @@ tar_read(plot)
 <section class="left-align">
 
 ::: {.fragment .fade-in-then-out}
--   When executing code to SQL you will need to create
-connect and disconnect each time 🔌
+-   When executing code to SQL you will need to create connect and disconnect each time 🔌
 
 ```{r}
 #| label: targets-sql_conn
@@ -1217,8 +1316,7 @@ function(yml_key) {
 :::
 
 ::: {.fragment .fade-in}
--   Also the package {`sqltargets`} which applies {`targets`}
-principles to .sql files 📦
+-   Also the package {`sqltargets`} which applies {`targets`} principles to .sql files 📦
 :::
 
 ::: r-stack
@@ -1246,8 +1344,7 @@ tar_sql(query, path = "query.sql", query_params = query_params)
 </section>
 
 ::: notes
--   SQL connection repetitio is to ensure the connection is
-closed and is reusable
+-   SQL connection repetitio is to ensure the connection is closed and is reusable
 :::
 
 ------------------------------------------------------------------------
@@ -1286,21 +1383,21 @@ closed and is reusable
 
 <section class="left-align">
 
-- {targets} manual: <span class="link-underlined">[Link]({{< env targets_pkg_manual >}}){target="_blank"}</span>
+-   {targets} manual: [[Link]({{< env targets_pkg_manual >}}){target="_blank"}]{.link-underlined}
 
-- YouTube {targets} walkthrough: <span class="link-underlined">[Link]({{< env youtube_targets >}}){target="_blank"}</span>
+-   YouTube {targets} walkthrough: [[Link]({{< env youtube_targets >}}){target="_blank"}]{.link-underlined}
 
-- Ofsted MI {targets} example pipeline GitHub: <span class="link-underlined">[Link]({{< env ofsted_mi_github >}}){target="_blank"}</span>
+-   Ofsted MI {targets} example pipeline GitHub: [[Link]({{< env ofsted_mi_github >}}){target="_blank"}]{.link-underlined}
 
-- These slides and mini {targets} example GitHub: <span class="link-underlined">[Link]({{< env slides_github >}}){target="_blank"}</span>
+-   These slides and mini {targets} example GitHub: [[Link]({{< env slides_github >}}){target="_blank"}]{.link-underlined}
 
-- {sqltargets} GitHub: <span class="link-underlined">[Link]({{< env sql_targets_git >}}){target="_blank"}</span>
+-   {sqltargets} GitHub: [[Link]({{< env sql_targets_git >}}){target="_blank"}]{.link-underlined}
 
-- Building reproducible analytical pipelines with R: <span class="link-underlined">[Link]({{< env bruno_targets >}}){target="_blank"}</span>
+-   Building reproducible analytical pipelines with R: [[Link]({{< env bruno_targets >}}){target="_blank"}]{.link-underlined}
 
 Email me at:
 
-<span style = "color:#4758AB;">jake.tufts@education.gov.uk</span>
+[jake.tufts\@education.gov.uk]{style="color:#4758AB;"}
 
 </section>
 
@@ -1315,6 +1412,3 @@ Email me at:
 ![Process map](_images/ofsted-mi-process-map.jpg)
 
 ![Targets pipeline](_images/ofsted_targets_pipeline.png)
-
-
-
