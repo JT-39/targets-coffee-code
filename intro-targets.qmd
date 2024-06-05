@@ -28,11 +28,9 @@ Use it to coordinate your data analysis projects
 
 ------------------------------------------------------------------------
 
-::: center
-## Why use <span style = "color:#4758AB;">{targets}</span>?
+## Why use <span style = "color:#4758AB;">{targets}</span>? {.center}
 
 🎯
-:::
 
 ------------------------------------------------------------------------
 
@@ -287,30 +285,31 @@ digraph G {
 ```
 :::
 
-::: {.fragment width="450" height="300"}
+:::
+
+------------------------------------------------------------------------
+
+## Data analysis can be slow and repetitive
 ```{dot}
-//| label: launch-3
+//| label: full-end
 //| eval: true
 //| echo: false
 
 digraph G {
     rankdir=LR;
-    node [shape = box style=rounded color=transparent]
-    edge [color=transparent]
     {
-        A[label="Launch the code" color=black]
-        B[label="Wait while it runs" fontcolor=transparent]
-        C[label="Discover an issue" fontcolor=transparent]
-        D[label="Restart from scratch" fontcolor=transparent]
+    node [shape = box style=rounded]
+        A[label="Launch the code"]
+        B[label="Wait while it runs"]
+        C[label="Discover an issue"]
+        D[label="Restart from scratch"]
     }
-    A -> B [color=transparent]
-    A -> D [dir=back color=transparent]
-    B -> C [color=transparent]
-    D -> C [dir=back color=transparent]
+    A -> B
+    A -> D [dir=back]
+    B -> C
+    D -> C [dir=back]
 }
 ```
-:::
-:::
 
 ------------------------------------------------------------------------
 
